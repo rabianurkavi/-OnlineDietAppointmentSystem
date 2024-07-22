@@ -1,0 +1,83 @@
+﻿@model Entities.Concrete.Message
+@{
+    ViewData["Title"] = "SendMessage";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+
+
+
+<body>
+    <div class="wrapper wrapper-content">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="ibox ">
+                    <div class="ibox-content mailbox-content">
+                        <div class="file-manager">
+                            <a class="btn btn-block btn-primary compose-mail" href="mail_compose.html">Mesaj Kutusu</a>
+                            <div class="space-25"></div>
+                            <h5>Dosyalar</h5>
+                            <ul class="folder-list m-b-md" style="padding: 0">
+                                <li><a href="/AdminMessage/InBox/"> <i class="fa fa-inbox "></i> Gelen Mesajlar <span class="label label-warning float-right">@ViewBag.messageInboxTotal</span> </a></li>
+                                <li><a href="/AdminMessage/SendBox/"> <i class="fa fa-envelope-o"></i> Giden Mesajlar<span class="label label-info float-right">@ViewBag.messageSendTotal</span>  </a></li>
+
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 animated fadeInRight">
+                <div class="mail-box-header">
+                    <div class="float-right tooltip-demo">
+                        <a href="mailbox.html" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Move to draft folder"><i class="fa fa-pencil"></i> Taslak</a>
+                        <a href="/AdminMessage/InBox/" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Discard email"><i class="fa fa-times"></i> İptal Et</a>
+                    </div>
+                    <h2>
+                        Mail Gönder
+                    </h2>
+                </div>
+                <div class="mail-box">
+
+
+                    <div class="mail-body">
+                        @using (Html.BeginForm("NewMessage", "AdminMessage", FormMethod.Post))
+                        {
+                            <div>
+                                @Html.Label("Alıcı: ")
+                                @Html.DropDownListFor(x => x.ReceiverID, (List<SelectListItem>)ViewBag.mailList, new { @class = "form-control" })
+                            </div>
+                            <div>
+                                @Html.Label("Konu: ")
+                                @Html.TextBoxFor(x => x.Subject, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.Subject)
+                            </div>
+                            <div>
+                                @Html.Label("Mesaj: ")
+                                @Html.TextAreaFor(x => x.MessageDetails, new { @class = "form-control", rows = 4 })
+                            </div>
+                            <br />
+                            <button class="btn btn-primary" type="submit">Mesaj Gönder</button>
+                        }
+
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+    @section scripts{
+
+    }
+</body>
+
+</html>
+
+

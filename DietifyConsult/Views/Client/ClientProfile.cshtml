@@ -1,0 +1,129 @@
+﻿@model Entities.Concrete.Client
+@{
+    ViewData["Title"] = "ClientProfile";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+<div class="container">
+    <div class="contact_grid_right">
+       
+            <style>
+                body {
+                    background-color: white /* Light gray background */
+                }
+
+                h1 {
+                    color: #2c3e50; /* Dark blue heading */
+                }
+
+                label {
+                    color: #2c3e50; /* Dark blue labels */
+                }
+
+                .form-control {
+                    border: 1px solid #bdc3c7; /* Light gray border */
+                }
+
+                .btn-primary {
+                    background-color: #27ae60; /* Green primary button */
+                    border: none;
+                    transition: background-color 0.3s ease; /* Smooth transition */
+                    padding: 12px 24px; /* Büyük buton boyutu */
+                    font-size: 18px; /* Buton metin boyutu */
+                }
+
+                    .btn-primary:hover {
+                        background-color: #219653; /* Darker green on hover */
+                    }
+
+                .validation-message {
+                    color: red; /* Red validation messages */
+                }
+
+                /* Profil fotoğrafı çerçeve */
+                .profile-picture {
+                    border: 5px solid #27ae60; /* Green border */
+                    border-radius: 50%; /* Yuvarlak kenarlar */
+                    overflow: hidden; /* İçeriğin taşmasını engelle */
+                    width: 200px; /* Profil fotoğrafı genişliği */
+                    height: 200px; /* Profil fotoğrafı yüksekliği */
+                    margin-bottom: 20px; /* Alt kısma boşluk ekle */
+                }
+
+                    .profile-picture img {
+                        width: 100%; /* Resmi tam genişlikte göster */
+                        height: 100%; /* Resmi tam yükseklikte göster */
+                        object-fit: cover; /* Resmi kırp ve ölçekle */
+                    }
+            </style>
+        @using (Html.BeginForm("ClientProfile", "Client", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+
+            <div class="row contact_left_grid">
+                <div class="col-md-6 con-left">
+                    <br>
+                    @Html.Label("Profil Fotoğrafı")
+                    <br />
+                    <div class="profile-picture">
+                        @if (!string.IsNullOrEmpty(Model.ClientImage))
+                        {
+                            <img src="~/resim/@Model.ClientImage" alt="Profil Fotoğrafı" class="img-fluid" />
+                        }
+                    </div>
+
+                    @Html.HiddenFor(x => x.ClientImage) <!-- Mevcut görsel yolunu korumak için gizli alan -->
+                    @Html.TextBox("ClientImage", null, new { @class = "form-control", type = "file" }) <!-- Dosya yükleme girişi -->
+                    @Html.ValidationMessageFor(x => x.ClientImage)
+                    <br>
+                    @Html.Label("İsim")
+                    @Html.TextBoxFor(x => x.ClientName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.ClientName, "", new { @class = "validation-message" })
+                    <br />
+                    @Html.Label("Soy İsim")
+                    @Html.TextBoxFor(x => x.ClientSurName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.ClientSurName, "", new { @class = "validation-message" })
+                    <br />
+                    @Html.Label("Email")
+                    @Html.TextBoxFor(x => x.ClientEmail, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.ClientEmail, "", new { @class = "validation-message", type = "email" })
+                    <br />
+                    @Html.Label("Telefon Numarası")
+                    <br />
+                    @Html.EditorFor(x => x.PhoneNumber, new { @class = "form-control", type = "tel" })
+                    @Html.ValidationMessageFor(x => x.PhoneNumber, "", new { @class = "validation-message" })
+                    <br />
+                    @Html.Label("Boy")
+                    <br />
+                    @Html.EditorFor(x => x.ClientHeight, new { @class = "form-control", type = "number" })
+                    @Html.ValidationMessageFor(x => x.ClientHeight, "", new { @class = "validation-message" })
+                    <br />
+                    @Html.Label("Kilo")
+                    <br />
+                    @Html.EditorFor(x => x.ClientWeight, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.ClientWeight, "", new { @class = "validation-message", type = "number" })
+                    <br />
+                    <br />
+                    @Html.Label("Şifre")
+                    @Html.TextBoxFor(x => x.ClientPassword, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.ClientPassword, "", new { @class = "validation-message" })
+                    <br />
+                    @Html.Label("Doğum Tarihi")
+                    @Html.EditorFor(x => x.ClientBirthDate, new { @class = "form-control", type = "date" })
+                    @Html.ValidationMessageFor(x => x.ClientBirthDate)
+                    <br />
+                    <br />
+                    <br />
+                    @Html.HiddenFor(x => x.DietitianStatus)
+                    @Html.HiddenFor(x => x.ClientID)
+                    @Html.HiddenFor(x => x.CreateDate)
+                    @Html.HiddenFor(x => x.AdminStatus)
+
+
+                    <button class="btn btn-primary">Değişiklikleri Kaydet</button>
+                    <br />
+                    <br />
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">

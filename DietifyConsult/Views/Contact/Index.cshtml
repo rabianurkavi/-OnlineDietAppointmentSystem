@@ -1,0 +1,167 @@
+﻿@model Entities.Concrete.Contact
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+<head>
+	<title>Weblog a Blogging Category Bootstrap responsive WebTemplate | Contact :: w3layouts</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta name="keywords" content="Weblog a Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+	<script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<link href="~/web/css/bootstrap.css" rel='stylesheet' type='text/css' />
+	<link href="~/web/css/contact.css" rel='stylesheet' type='text/css' />
+	<link href="~/web/css/style.css" rel='stylesheet' type='text/css' />
+	<link href="~/web/css/fontawesome-all.css" rel="stylesheet">
+	
+</head>
+<body>
+	<!--Header-->
+
+	<!--//header-->
+	<!--/banner-->
+	<div class="banner-inner">
+	</div>
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item">
+			<a href="index.html">Diyetisyen</a>
+		</li>
+		<li class="breadcrumb-item active">Online</li>
+	</ol>
+	<!--//banner-->
+	<!--/main-->
+	<section class="main-content-w3layouts-agileits">
+
+		<h3 class="tittle">İletişim</h3>
+		<p class="sub text-center">Fikrinizi öğrenmeyi çok isteriz</p>
+		<div class="contact-map inner-sec">
+
+			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001156.7577251737!2d32.85972655!3d39.92896825000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14dcaa22a12f049f:0x31eefe88f35c42f!2sAnkara%2C%20Turkey!5e0!3m2!1sen!2str!4v1648595314120!50z"></iframe>
+
+		</div>
+		<div class="ad-inf-sec bg-light">
+			<div class="container">
+				<div class="address row">
+
+					<div class="col-lg-4 address-grid">
+						<div class="row address-info">
+							<div class="col-md-4 address-left text-center">
+								<i class="far fa-map"></i>
+							</div>
+							<div class="col-md-8 address-right text-left">
+								<h6>Adres</h6>
+								<p>
+									Ankara, Türkiye
+
+								</p>
+							</div>
+						</div>
+
+					</div>
+					<div class="col-lg-4 address-grid">
+						<div class="row address-info">
+							<div class="col-md-4 address-left text-center">
+								<i class="far fa-envelope"></i>
+							</div>
+							<div class="col-md-8 address-right text-left">
+								<h6>Mail</h6>
+								<p>
+									
+									<a href="mailto:example@email.com"> diyetisyenonline@iletisim.com</a>
+
+								</p>
+							</div>
+
+						</div>
+					</div>
+					<div class="col-lg-4 address-grid">
+						<div class="row address-info">
+							<div class="col-md-4 address-left text-center">
+								<i class="fas fa-mobile-alt"></i>
+							</div>
+							<div class="col-md-8 address-right text-left">
+								<h6>Telefon</h6>
+								<p>+0312 288 54 12 </p>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="contact_grid_right">
+				<form method="post" onsubmit="return validateForm()">
+					<div class="row contact_left_grid">
+						<div class="col-md-6 con-left">
+							<div class="form-group">
+								<label for="validationCustom01 my-2">İsim Soyisim</label>
+								<input class="form-control" type="text" name="ContactNameSurName" placeholder="" required="">
+							</div>
+							<div class="form-group">
+								<label for="exampleFormControlInput1">Mail</label>
+								<input class="form-control" type="email" name="ContactMail" placeholder="" required="">
+							</div>
+							<div class="form-group">
+								<label for="validationCustom03 my-2">Konu</label>
+								<input class="form-control" type="text" name="ContactSubject" placeholder="" required="">
+							</div>
+						</div>
+						<div class="col-md-6 con-right">
+							<div class="form-group">
+								<label for="textarea">Mesaj</label>
+								<textarea id="textarea" placeholder="" name="ContactMessage"></textarea>
+							</div>
+							<input class="form-control" type="submit" value="Gönder">
+
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+	<script>
+		function validateForm() {
+			// Get references to form fields
+			const nameField = document.getElementsByName("ContactNameSurName")[0];
+			const emailField = document.getElementsByName("ContactMail")[0];
+			const subjectField = document.getElementsByName("ContactSubject")[0];
+			const messageField = document.getElementsByName("ContactMessage")[0];
+
+			// Check if fields are empty
+			if (nameField.value === "" || emailField.value === "" || subjectField.value === "" || messageField.value === "") {
+				alert("Lütfen tüm alanları doldurunuz.");
+				return false; // Prevent form submission
+			}
+
+			// You can add further validation here, like email format check
+			// ...
+
+			// If all fields are valid, allow form submission
+			Swal.fire({
+				position: "top-end",
+				icon: "success",
+				title: "Başarılı bir şekilde mail gönderildi.",
+				showConfirmButton: false,
+				timer: 1500
+			});
+			return true;
+		}
+	</script>
+
+
+
+</body>
+

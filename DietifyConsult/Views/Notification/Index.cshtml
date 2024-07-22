@@ -1,0 +1,84 @@
+﻿@using Entities.Concrete
+@model List<Notification>
+@{
+    ViewData["Title"] = "Bildirimler";
+    Layout = "~/Views/Shared/_ConsultantLayout.cshtml";
+}
+<h1 class="mb-4 text-primary">Duyurular</h1>
+<div class="table-responsive">
+    <!-- Tablo için kaydırmalı alan -->
+    <table class="table table-hover table-bordered">
+        <thead style="background-color: #8b6fc7; color: white;">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Duyuru</th>
+                <th scope="col">Duyuru İçeriği</th>
+                <th scope="col">Tarih</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                @if(item.NotificationStatus==true)
+                {
+                <tr class="table-light">
+                    <td>@item.NotificationID</td>
+                    <td>
+                        <i class="@item.NotificationTypeSymbol notification-symbol"></i>
+                        <span class="ml-2">@item.NotificationType</span>
+                    </td>
+                    <td>
+                        <div class="notification-details">@item.NotificationDetails</div>
+                    </td>
+                    <td>@item.NotificationDate.ToShortDateString()</td>
+                </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<style>
+    h1 {
+        font-size: 2rem;
+        color: #007bff; /* Bootstrap Primary Color */
+    }
+
+    .table {
+        background-color: #f8f9fa; /* Light background color for the table */
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #e9ecef; /* Light grey background on hover */
+    }
+
+    .table-bordered {
+        border: 1px solid #dee2e6; /* Default border color */
+    }
+
+    .table-light {
+        background-color: #ffffff; /* Light background for rows */
+    }
+
+        .table-light td {
+            color: #000; /* Black text color for rows */
+            font-weight: normal; /* Normal text for better readability */
+            font-size: 1rem; /* Default font size for content */
+        }
+
+    thead th {
+        font-weight: bold; /* Bold text for header */
+        font-size: 1.2rem; /* Larger font size for header */
+    }
+
+    .notification-symbol {
+        font-size: 1.2rem; /* Larger icon size */
+        color: #8b6fc7; /* Mor renk semboller */
+    }
+
+    .notification-details {
+        overflow-y: auto; /* Dikey kaydırma */
+        white-space: normal; /* Metnin satır atlamasına izin ver */
+        word-wrap: break-word; /* Uzun kelimelerin kaydırılmasını sağla */
+    }
+</style>

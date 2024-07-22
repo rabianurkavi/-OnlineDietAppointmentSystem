@@ -1,0 +1,29 @@
+﻿@model Entities.Concrete.Blog
+
+<div class="tech-btm">
+	<h4>En yüksek skorlu post</h4>
+
+
+    <div class="blog-grids row mb-3">
+        <div class="col-md-5 blog-grid-left">
+            <a href="~/Blog/BlogDetails/@Model.BlogID">
+                <img src="~/resim/@Model.BlogImage" class="img-fluid" alt="">
+            </a>
+        </div>
+        <div class="col-md-7 blog-grid-right mt-2" style="margin-left: -20px; margin-bottom: -20px">
+
+            <h5>
+                <a href="~/Blog/BlogDetails/@Model.BlogID">@Model.BlogTitle </a>
+                
+            </h5>
+            <div class="sub-meta">
+                <span>
+                    <i class="far fa-clock"></i> @(((DateTime)Model.BlogCreateDate).ToString("dd MMMM yyyy", new System.Globalization.CultureInfo("tr-TR")))
+                </span>
+            </div>
+
+        </div>
+
+    </div>
+	
+</div>

@@ -1,0 +1,30 @@
+﻿@model Entities.Concrete.Blog
+@{
+    ViewData["Title"] = "BlogAdd";
+    Layout = "~/Views/Shared/_ConsultantLayout.cshtml";
+}
+
+@using (Html.BeginForm("BlogAdd", "Blog", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.Label("Blog başlığı")
+    @Html.TextBoxFor(x => x.BlogTitle, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.BlogTitle)
+    <br />
+    @Html.Label("Blog Görseli")
+    @Html.TextBoxFor(x => x.BlogImage, new { @class = "form-control", type = "file" })    @Html.ValidationMessageFor(x => x.BlogImage)
+
+    <br />
+    @Html.Label("Blog İçeriği")
+    @Html.TextAreaFor(x => x.BlogDescription, 20, 3, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.BlogDescription)
+    <br />
+    
+
+    <button class="btn btn-primary">Bloğu Ekle</button>
+}
+<style>
+    .form-control {
+        font-size: 16px; /* Yazı boyutu ayarı */
+    }
+
+</style>

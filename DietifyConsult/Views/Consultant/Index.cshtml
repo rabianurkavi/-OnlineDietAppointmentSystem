@@ -1,0 +1,51 @@
+﻿@using Entities.Concrete
+@model List<Consultant>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<section class="main-content-w3layouts-agileits">
+    <div class="container">
+        <h3 class="tittle">Diyetisyenler</h3>
+        <div class="inner-sec">
+            <!--left-->
+            <div class="left-blog-info-w3layouts-agileits text-left">
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-lg-4 card">
+                            <a href="~/Consultant/ConsultantDetails/@item.ConsultantID">
+                                <img style="width:350px; height:350px" src="~/resim/@item.ConsultantImage" class="card-img-top img-fluid" alt="">
+                            </a>
+                            <a href="~/Consultant/ConsultantDetails/@item.ConsultantID" class="btn btn-secondary">Diyetisyeni İncele</a>
+
+                            <div class="card-body">
+                                <ul class="blog-icons my-4">
+                                    <li>
+                                        <a href="#">
+                                            <i class="fas fa-lira-sign"></i> @item.Price
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fas fa-star"></i> @item.RatingScore
+                                        </a>
+                                    </li>
+
+                                </ul>
+                                <h5 class="card-title">
+                                    <a href="~/web/single.html">@item.ConsultantName  @item.ConsultantSurName </a>
+                                </h5>
+                                <p class="card-text mb-3">@item.Specialization </p>
+                                <a href="~/web/single.html" class="btn btn-primary read-m">Randevu Al</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <!--//left-->
+            </div>
+        </div>
+    </div>
+</section>
+

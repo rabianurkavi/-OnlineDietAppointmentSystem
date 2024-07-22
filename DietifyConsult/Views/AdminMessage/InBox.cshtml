@@ -1,0 +1,73 @@
+﻿﻿@using Entities.Concrete
+@model List<Message>
+@{
+    ViewData["Title"] = "InBox";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<body>
+    <div class="wrapper wrapper-content">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="ibox ">
+                    <div class="ibox-content mailbox-content">
+                        <div class="file-manager">
+                            <a class="btn btn-block btn-primary compose-mail" href="/AdminMessage/NewMessage/">Mesaj Oluştur</a>
+                            <div class="space-25"></div>
+                            <h5>Dosyalar</h5>
+                            <ul class="folder-list m-b-md" style="padding: 0">
+                                <li><a href="/AdminMessage/InBox/"> <i class="fa fa-inbox "></i> Gelen Mesajlar <span class="label label-warning float-right">@ViewBag.messageTotal</span> </a></li>
+                                <li><a href="/AdminMessage/SendBox/"> <i class="fa fa-envelope-o"></i> Giden Mesajlar  <span class="label label-info float-right">@ViewBag.messageSendTotal</span> </a></li>
+                            </ul>   
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 animated fadeInRight">
+                <div class="mail-box-header">
+                    <h2>
+                        Gelen Kutusu
+                    </h2>
+                    <div class="mail-tools tooltip-demo m-t-md">
+                        <div class="btn-group float-right">
+                            <button class="btn btn-white btn-sm"><i class="fa fa-arrow-left"></i></button>
+                            <button class="btn btn-white btn-sm"><i class="fa fa-arrow-right"></i></button>
+
+                        </div>
+                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Gelen kutusunu yenile"><i class="fa fa-refresh"></i> Yenile</button>
+                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Okundu olarak işaretle"><i class="fa fa-eye"></i> </button>
+                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Önemli olarak işaretle"><i class="fa fa-exclamation"></i> </button>
+                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Çöp kutusuna taşı"><i class="fa fa-trash-o"></i> </button>
+
+                    </div>
+                </div>
+                <div class="mail-box">
+
+                    <table class="table table-hover table-mail">
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr class="read">
+                                    <td class="check-mail">
+                                        <input type="checkbox" class="i-checks">
+                                    </td>
+                                    <td class="mail-ontact"><a href="/AdminMessage/MessageDetails/@item.MessageID">@item.SenderUser.ClientName @item.SenderUser.ClientSurName</a></td>
+                                    <td class="mail-subject"><a href="/AdminMessage/MessageDetails/@item.MessageID">@item.Subject</a></td>
+                                    <td class="text-right mail-date">@item.MessageDate</td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    @section scripts{
+
+    }
+
+</body>
+</html>

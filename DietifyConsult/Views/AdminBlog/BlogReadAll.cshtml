@@ -1,0 +1,107 @@
+﻿@model IEnumerable<Entities.Concrete.Blog>
+@{
+    ViewData["Title"] = "BlogReadAll";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<body>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>Blog Detayları</h2>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="/Admin/Dashboard/">Ana Sayfa</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="/AdminBlog/Index/">Bloglar</a>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+                </div>
+            </div>
+           
+            <div class="wrapper wrapper-content animated fadeInRight">
+                
+                <div class="row">
+            @foreach (var item in Model)
+                        {
+                    <div class="col-lg-12">
+                       
+                        <div class="ibox product-detail">
+                            <div class="ibox-content">
+                        
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="product-images">
+                                        <img style="width: 600px; height: 500px;" alt="image" src="~/resim/@item.BlogImage">
+                                    </div>
+
+                                    </div>
+                                    <div class="col-md-7">
+
+                                        <h2 class="font-bold m-b-xs">
+                                            @item.BlogTitle
+                                        </h2>
+                                        <div class="m-t-md">
+                                        <h2 class="product-main-price">@item.Consultant.ConsultantName @item.Consultant.ConsultantSurName <small class="text-muted"></small> </h2>
+                                        </div>
+                                        <hr>
+
+                                    <h4>
+                                        @item.BlogDescription
+                                    </h4>
+
+                                        <div class="small text-muted">
+                                            
+
+                                            <br />
+                                            <br />
+                                        </div>
+
+
+                                        <div>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                        
+
+                            </div>
+                            <div class="ibox-footer">
+                                <span class="float-right">
+                                    Blog Oluşturma Tarihi - <i class="fa fa-clock-o"></i> @item.BlogCreateDate
+                                </span>
+                            </div>
+                        </div>
+                
+
+                    </div>
+            }
+
+        </div>
+              
+             </div>
+
+
+    <script>
+        $(document).ready(function () {
+
+
+            $('.product-images').slick({
+                dots: true
+            });
+
+        });
+
+    </script>
+    @section scripts{ }
+</body>
+
+</html>
+
+

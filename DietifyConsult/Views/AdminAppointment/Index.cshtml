@@ -1,0 +1,135 @@
+﻿@model IEnumerable<Entities.Concrete.Appointment>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int i = 1;
+}
+
+<!DOCTYPE html>
+<html>
+<body>
+
+
+
+    <div class="wrapper wrapper-content">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="ibox ">
+                    <div class="ibox-title">
+                        <span class="label label-success float-right">Toplam</span>
+                        <h5>Toplam Randevu</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins">@ViewBag.AppointmentCount</h1>
+                        <small> Tüm Zamanlar</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="ibox ">
+                    <div class="ibox-title">
+                        <span class="label label-info float-right">Geçen Aya Göre</span>
+                        <h5>Yeni Randevu</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins">@ViewBag.LastMonthApp</h1>
+                        @if (ViewBag.PercentApp >= 0)
+                        {
+                            <div class="stat-percent font-bold text-info">@ViewBag.PercentApp % <i class="fa fa-level-up"></i></div>
+                        }
+                        else
+                        {
+                            <div style="color:red" class="stat-percent font-bold text-danger">@ViewBag.PercentApp % <i class="fa fa-level-down"></i></div>
+                        }
+                        <small>Son Ay</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="ibox ">
+                    <div class="ibox-title">
+                        <h5>Randevu Tablosu </h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li>
+                                    <a href="#" class="dropdown-item">Config option 1</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-item">Config option 2</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                   
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+
+                                    <th>#</th>
+                                    <th></th>
+                                    <th>Diyetisyen </th>
+                                    <th>Diyetisyen Numarası </th>
+                                    <th></th>
+                                    <th>Kullanıcı Adı </th>
+                                    <th>Kullanıcı Numarası </th>
+                                    <th>Randevu Tarihi </th>
+                                    <th>Aktivite</th>
+                                    <th>Sil</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {                                  
+                                                  
+                                    <tr>
+                                    <td>@i</td>
+                                    <td class="client-avatar"><img alt="image" src="~/resim/@item.Consultant.ConsultantImage"> </td>
+                                    <td>@item.Consultant.ConsultantName @item.Consultant.ConsultantSurName </td>
+                                    <td>@item.Consultant.PhoneNumber</td>
+                                    <td class="client-avatar"><img alt="image" src="~/resim/@item.Client.ClientImage"> </td>
+                                    <td>@item.Client.ClientName @item.Client.ClientSurName</td>
+                                    <td>@item.Client.PhoneNumber </td>
+                                    <td>@item.AppointmentDateTime</td>
+                                    @if(item.Status==true)
+                                    {
+                                    <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
+                                    }
+                                    else
+                                    {
+                                    <td><a href="#"><i style="color: red" class="fa fa fa-times"></i></a></td>
+                                    }
+                                        <td><a style="color: red" href="/AdminAppointment/AppointmentDelete/@item.AppointmentID">Sil</a></td>
+                                    </tr>
+                                    i++;
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                   
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    @section scripts{ }
+
+</body>
+</html>
+

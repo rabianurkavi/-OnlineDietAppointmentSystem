@@ -1,0 +1,175 @@
+﻿@using Entities.Concrete
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@model IPagedList<Message>
+@{
+    ViewData["Title"] = "SendBox";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giden Kutusu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .inbox-container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .message {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sender-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .message-details {
+            flex-grow: 1;
+        }
+
+            .message-details h2 {
+                margin: 0;
+                font-size: 18px;
+                color: #333;
+            }
+
+            .message-details p {
+                margin: 5px 0;
+                color: #666;
+            }
+
+        .message-date {
+            font-size: 14px;
+            color: #888;
+        }
+
+        .read-button {
+            padding: 8px 16px;
+            background-color: #ddd;
+            color: #333;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            text-decoration: none;
+        }
+
+            .read-button:hover {
+                background-color: #ccc;
+                color: #222;
+            }
+
+        .send-message-button {
+            padding: 12px 24px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            text-decoration: none;
+            display: block;
+            margin: 20px auto;
+            max-width: 200px;
+            text-align: center;
+        }
+
+            .send-message-button:hover {
+                background-color: darkgrey;
+                color: black
+            }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .pagination-button {
+            padding: 10px;
+            background-color: #f5f5f5; /* Gri tonu */
+            color: #333; /* Yazı rengi */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+            .pagination-button:hover {
+                background-color: #ddd; /* Hover rengi */
+            }
+
+            .pagination-button:disabled {
+                background-color: #ccc; /* Devre dışı rengi */
+                color: #666;
+                cursor: not-allowed;
+            }
+
+        .empty-sendbox-message {
+            padding: 20px;
+            text-align: center;
+            color: #888;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="inbox-container">
+        @if (!Model.Any())
+        {
+            <div class="empty-sendbox-message">
+                Giden kutunuz boş.
+            </div>
+        }
+        else
+        {
+            @foreach (var item in Model)
+            {
+                <div class="message">
+                    <img src="~/resim/@item.ReceiverUser.ClientImage" alt="Receiver Avatar" class="sender-avatar">
+                    <div class="message-details">
+                        <h2>@item.Subject</h2>
+                        <p>Alıcı: @item.ReceiverUser.ClientName @item.ReceiverUser.ClientSurName</p>
+                        <p>Gönderilme Tarihi: @item.MessageDate.ToString("dd/MM/yyyy HH:mm")</p>
+                    </div>
+                    <a href="/BlogMessage/MessageDetailsSendBox/@item.MessageID" class="read-button">Mesajı Oku</a>
+                </div>
+            }
+        }
+    </div>
+    <!-- Pagination -->
+    @if (Model.Any())
+    {
+        <div class="pagination">
+            @Html.PagedListPager(Model, page => Url.Action("SendBox", new { page }), new PagedListRenderOptions { LiElementClasses = new[] { "page-item" }, PageClasses = new[] { "pagination-button" }, LinkToPreviousPageFormat = "<", LinkToNextPageFormat = ">" })
+        </div>
+    }
+    <a href="/BlogMessage/NewMessage" class="send-message-button">Yeni Mesaj Oluştur</a>
+
+</body>
+</html>

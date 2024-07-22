@@ -1,0 +1,115 @@
+﻿@model Entities.Concrete.Consultant
+@{
+    ViewData["Title"] = "ConsultantProfile";
+    Layout = "~/Views/Shared/_ConsultantLayout.cshtml";
+}
+
+@using (Html.BeginForm("ConsultantProfile", "Consultant", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <style>
+        body {
+            background-color: #f7f7f7; /* Light gray background */
+        }
+
+        h1 {
+            color: #2c3e50; /* Dark blue heading */
+        }
+
+        label {
+            color: #2c3e50; /* Dark blue labels */
+        }
+
+        .form-control {
+            border: 1px solid #bdc3c7; /* Light gray border */
+        }
+
+        .btn-primary {
+            background-color: #27ae60; /* Green primary button */
+            border: none;
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+
+            .btn-primary:hover {
+                background-color: #219653; /* Darker green on hover */
+            }
+
+        .fa-star {
+            color: #f39c12; /* Orange star */
+        }
+
+        .validation-message {
+            color: red; /* Red validation messages */
+        }
+        /* Profil fotoğrafı çerçeve */
+        .profile-picture {
+            border: 5px solid #8558a6;
+            overflow: hidden;
+            width: 200px;
+            height: 200px;
+            margin-bottom: 20px;
+        }
+
+            .profile-picture img {
+              
+                object-fit: cover;
+            }
+
+    </style>
+
+    <br />
+    @Html.Label("Profil Fotoğrafı")
+    <br />
+    <div class="profile-picture">
+        @if (!string.IsNullOrEmpty(Model.ConsultantImage))
+        {
+            <img src="~/resim/@Model.ConsultantImage" alt="Profil Fotoğrafı" class="img-fluid" />
+        }
+    </div>
+    <span class="fa fa-star">@Model.RatingScore</span>
+    <small style="color: orange;">(Değerlendirme)</small>
+    <br />
+    @Html.ValidationMessageFor(x => x.ConsultantImage, "", new { @class = "validation-message" })
+    <br />
+    @Html.Label("İsim")
+    @Html.TextBoxFor(x => x.ConsultantName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.ConsultantName, "", new { @class = "validation-message" })
+    <br />
+    @Html.Label("Soy İsim")
+    @Html.TextBoxFor(x => x.ConsultantSurName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.ConsultantSurName, "", new { @class = "validation-message" })
+    <br />
+    @Html.Label("Uzmanlık Alanı")
+    @Html.TextBoxFor(x => x.Specialization, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Specialization, "", new { @class = "validation-message" })
+    <br />
+    @Html.Label("Telefon Numarası")
+    @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.PhoneNumber, "", new { @class = "validation-message" })
+    <br />
+    @Html.Label("Email")
+    @Html.TextBoxFor(x => x.ConsultantEmail, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.ConsultantEmail, "", new { @class = "validation-message", type="email" })
+    <br />
+    @Html.Label("Yaşadığı Şehir")
+    @Html.TextBoxFor(x => x.ConsultantAddress, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.ConsultantAddress, "", new { @class = "validation-message" })
+    <br />
+    @Html.Label("Seans Ücreti")
+    @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Price, "", new { @class = "validation-message" })
+    <br />
+    @Html.Label("Şifre")
+    @Html.TextBoxFor(x => x.ConsultantPassword, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.ConsultantPassword, "", new { @class = "validation-message" })
+    <br />
+    <br />
+    <br />
+    @Html.HiddenFor(x => x.ConsultantID)
+    @Html.HiddenFor(x => x.ClientID)
+    @Html.HiddenFor(x => x.ConsultantImage)
+    @Html.HiddenFor(x => x.RatingScore)
+    @Html.HiddenFor(x => x.ConsultantStatus)
+
+    <button class="btn btn-primary">Değişiklikleri Kaydet</button>
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">

@@ -1,0 +1,72 @@
+﻿@model List<Entities.Concrete.Blog>
+@{
+    ViewData["Title"] = "BlogListByConsultant";
+    Layout = "~/Views/Shared/_ConsultantLayout.cshtml";
+}
+<style>
+    .table-header {
+        background-color: #f8f9fa;
+        border-bottom: 1px solid #ddd;
+        font-weight: bold;
+    }
+
+    .table-striped tbody tr:nth-child(odd) {
+        background-color: #f2f2f2;
+    }
+
+    .table-striped tbody tr:nth-child(even) {
+        background-color: #ffffff;
+    }
+
+    .table-striped tbody tr:hover {
+        background-color: #e2e6ea;
+    }
+
+    .btn {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.9rem;
+    }
+</style>
+
+<div class="table-responsive">
+    <table class="table table-striped table-bordered">
+        <thead class="table-header">
+            <tr>
+                <th scope="col">Blog Başlığı</th>
+                <th scope="col">Oluşturma Tarihi</th>
+                <th scope="col">Durumu</th>
+                <th scope="col">Sil</th>
+                <th scope="col">Düzenle</th>
+                <th scope="col">Bloğa Git</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.BlogTitle</td>
+                    <td style="text-align: center;">@item.BlogCreateDate.ToString("dd MMMM yyyy ", new System.Globalization.CultureInfo("tr-TR"))</td>
+                    <td>
+                        @if (item.Status)
+                        {
+                            <span class="text-success">Aktif</span>
+                        }
+                        else
+                        {
+                            <span class="text-danger">Aktif Değil</span>
+                        }
+                    </td>
+                    <td>
+                        <a href="/Blog/BlogDelete/@item.BlogID" onclick="return confirm('Bloğu silmek üzeresiniz.');" class="btn btn-danger">Sil</a>
+                    </td>
+                    <td>
+                        <a href="/Blog/EditBlog/@item.BlogID" class="btn btn-warning">Düzenle</a>
+                    </td>
+                    <td>
+                        <a href="/Blog/BlogDetails/@item.BlogID" class="btn btn-success">Bloğa Git</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

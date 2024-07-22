@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Diyet Dedektifleri</title>
+    <link rel="stylesheet" href="~/consultant/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/consultant/assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="~/consultant/assets/css/style.css">
+    <link rel="shortcut icon" href="~/consultant/assets/images/d.png" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/consultant/assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="~/consultant/assets/js/off-canvas.js"></script>
+    <script src="~/consultant/assets/js/hoverable-collapse.js"></script>
+    <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
+    
+
+</head>
+<body>
+    <div class="container-scroller">
+        <!-- partial:../../partials/_navbar.html -->
+        <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="navbar-brand-wrapper d-flex align-items-center justify-content-end">
+                <a class="navbar-brand brand-logo" href="../../index.html">
+                    <img src="~/consultant/assets/images/dr3.png" style="width: 70px; height: 60px;" alt="logo" />
+                    <span class="ml-1" style="font-size: 20px;">Diyetisyen Paneli</span>
+                </a>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-stretch">
+
+                
+                @await Component.InvokeAsync("ConsultantName");
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                    <span class="mdi mdi-menu"></span>
+                </button>
+            </div>
+        </nav>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            @await Html.PartialAsync("~/Views/Consultant/ConsultantNavbarPartial.cshtml")
+            <div class="main-panel">
+                <div class="content-wrapper">
+                  @RenderBody()
+                </div>
+
+                @await Html.PartialAsync("~/Views/Consultant/ConsultantFooterPartial.cshtml")
+
+            </div>
+        </div>
+    </div>
+
+
+   
+
+</body>
+</html>

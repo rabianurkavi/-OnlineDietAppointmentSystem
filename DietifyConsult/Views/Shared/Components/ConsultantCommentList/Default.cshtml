@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Entities.Concrete.Comment>
+
+<div class="comment-top">
+    <h4>Yorumlar</h4>
+
+    @if (!Model.Any())
+    {
+        <h4>Henüz yorum yapılmadı ...</h4>
+    }
+    else
+    {
+        @foreach (var item in Model)
+        {
+            @if(item.CommentStatus==true)
+            {
+            <div class="media">
+                <img src="~/resim/@item.Client.ClientImage" alt="" class="img-fluid rounded-circle" style="width: 80px; height: 100px;" />
+                <div class="media-body">
+                    <h5 class="mt-0">@item.Client.ClientName @item.Client.ClientSurName</h5>
+
+                        <span style="display: flex; align-items: center;">
+                        <small class="text-muted">@item.CommentDate.ToString("dd MMMM yyyy ", new System.Globalization.CultureInfo("tr-TR"))</small>
+                        <i class="fas fa-star" style="color: #f9c72e; margin-left: 5px;"><span> @item.ConsultantScore &nbsp</span></i>
+
+                        </span>
+                    <p>@item.CommentDescription</p>
+                </div>
+            </div>
+            }
+        }
+    }
+    
+</div>

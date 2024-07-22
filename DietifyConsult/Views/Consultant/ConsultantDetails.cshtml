@@ -1,0 +1,170 @@
+﻿@model IEnumerable<Entities.Concrete.Consultant>
+@{
+    ViewData["Title"] = "ConsultantDetails";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+<body>
+@*    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+*@    <!--//banner-->
+    <section class="banner-bottom">
+        <!--/blog-->
+        <div class="container">
+            <div class="row">
+                <!--left-->
+                <div class="col-lg-8 left-blog-info-w3layouts-agileits text-left">
+                    @foreach (var item in Model)
+                    {
+                        <div class="blog-grid-top">
+                            <div class="b-grid-top">
+                                <div class="circle-image">
+                                    <a>
+                                        <img style="width: 250px; height:270px;" src="~/resim/@item.ConsultantImage" class="img-fluid" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <span style="display: flex; align-items: center;">
+                                <i class="fas fa-star" style="color: #f9c72e; margin-right: 5px;"><span> @item.RatingScore &nbsp</span></i>
+                                <h3>@item.ConsultantName @item.ConsultantSurName - Seans Ücreti: @item.Price ₺ </h3>
+
+                            </span>
+                            <hr>
+                            <p class="consultant-details">
+
+                                <h5>Eğitim Bilgileri</h5>
+                                <br>
+                                <ul>
+                                    @foreach (var education in item.Educations)
+                                    {
+                                        <li style="color:#a0a1a5">
+                                            @education.EducationLevel - @education.UniversityName &nbsp @education.UniversityGraduateHistory.Year - @education.UniversityEndDate.Year
+                                        </li>
+                                    }
+                                </ul>
+                                <br>
+                                <hr>
+                                <h5>İş Deneyimleri</h5>
+                                <br>
+                                <ul>
+                                    @foreach (var workExperiences in item.WorkExperiences)
+                                    {
+                                        <li style="color:#a0a1a5">
+                                            @workExperiences.CompanyName &nbsp @workExperiences.StartingDate.Year - @(workExperiences.EndDate != null ? workExperiences.EndDate.Value.ToString("yyyy") : "Devam ediyor.")
+                                        </li>
+                                    }
+                                </ul>
+                                <br>
+                                <hr>
+                                <h5>Uzmanlık Alanı</h5>
+                                <br>
+                                @{
+                                    string[] specializations = item.Specialization.Split(',');
+                                }
+
+                                @if (specializations.Any())
+                                {
+                                    <ul>
+                                        @foreach (var specialization in specializations)
+                                        {
+                                            <li style="color:#a0a1a5">@specialization.Trim()</li>
+                                        }
+                                    </ul>
+                                }
+                            </p>
+                            <hr>
+                            <h5>Yazdığı Bloglar</h5>
+                            <br>
+                            <a href="/Consultant/Index" class="btn btn-primary read-m">Diyetisyen Listesi</a>
+                            <a href="/Test/Details/@item.ConsultantID" class="button">Randevu Al</a>
+
+@*                            <div class="modal fade" id="myModal" role="dialog" data-url='@Url.Action("PartialDetails", "Test", new { id = item.ConsultantID })'></div>
+*@
+                        </div>
+
+                    }
+                    @await Component.InvokeAsync("ConsultantCommentList",new { id = ViewBag.i })
+                    @*					@await Html.PartialAsync("~/Views/BlogComment/CommentListByBlog.cshtml")
+                    *@					@await Html.PartialAsync("~/Views/ConsultantComment/PartialAddConsultantComment.cshtml")
+                    @*                    @await Component.InvokeAsync("ConsultantCommentAdd",new { id = ViewBag.i })
+                    *@
+
+                </div>
+
+                <!--//left-->
+                <!--right-->
+                <aside class="col-lg-4 agileits-w3ls-right-blog-con text-right">
+                    <div class="right-blog-info text-left">
+                        <h4>Sitemize abone ol</h4>
+
+                        @await Html.PartialAsync("~/Views/Blog/PartialSubscribe.cshtml")
+
+                        @await Component.InvokeAsync("BlogTopWeek")
+
+                        @await Component.InvokeAsync("RecentBlog")
+
+                    </div>
+
+                </aside>
+                <!--//right-->
+            </div>
+        </div>
+    </section>
+    <style>
+        .circle-image {
+            position: relative; /* Enable layering for overlay effects */
+            display: flex;
+            align-items: center; /* Vertically center image and info */
+            width: 250px; /* Adjust image container width as needed */
+            height: 250px; /* Adjust image container height as needed */
+        }
+
+            .circle-image img {
+                width: 100%; /* Image fills container width */
+                height: auto; /* Image maintains aspect ratio */
+                border-radius: 50%; /* Circular image */
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+            }
+
+
+
+        .consultant-image-wrapper:hover {
+            background-color: rgba(0, 0, 0, 0.5); /* Darken background on hover */
+        }
+
+        .consultant-details-excerpt {
+            font-size: 0.8rem; /* Adjust font size for a concise overview */
+            margin-top: 5px; /* Add spacing above bio */
+        }
+
+        .button {
+            background-color: black;
+            color: white;
+            padding: 8.2px 20px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            .button:hover {
+                background-color: #01cd74;
+                color: black
+            }
+    </style>
+@*    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('.button').click(function () {
+
+                var url = $('#myModal').data('url');
+                $.get(url, function (data) {
+
+                    $("#myModal").html(data);
+                    $("#myModal").modal('show');
+                });
+            });
+
+        });
+    </script>*@
+</body>
+
+
+

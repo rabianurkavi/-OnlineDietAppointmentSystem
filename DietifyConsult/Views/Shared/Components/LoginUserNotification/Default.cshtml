@@ -1,0 +1,37 @@
+﻿<div class="col-md-4 top-forms text-center mt-lg-3 mt-md-1 mt-0">
+    <span class="mx-lg-4 mx-md-2  mx-1">
+        Hoşgeldin &nbsp; @ViewBag.name
+    </span>
+    @*<span class="mx-lg-4 mx-md-2  mx-1">
+
+    </span>*@
+    &nbsp;
+    <span>
+        @if(ViewBag.status==true)
+        {
+            <a href="/Blog/BlogListByConsultant/">
+                <i class="far fa-user"></i> Profile Git
+            </a>
+            
+        }
+        else if (ViewBag.adminStatus == true)
+        {
+            <a href="/Admin/Dashboard/">
+                <i class="far fa-user"></i> Profile Git
+            </a>
+        }
+        else
+        {
+            <a href="/Client/ClientProfile/">
+                <i class="far fa-user"></i> Profile Git
+            </a>
+        }
+        
+        &nbsp;
+    </span>
+    <span>
+        <a href="/Login/LogOut/">
+            <i class="far fa-pause-circle"></i> Çıkış
+        </a>
+    </span>
+</div>

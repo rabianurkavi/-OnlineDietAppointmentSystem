@@ -1,0 +1,102 @@
+﻿@model IEnumerable<Entities.Concrete.Comment>
+@{
+    ViewData["Title"] = "ConsultantComment";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+
+
+
+<body>
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>Diyetisyen Yorumları</h2>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="/Admin/Dashboard/">Ana Sayfa</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="/AdminComment/BlogComment/">Blog Yorumları</a>
+                </li>
+                <li class="breadcrumb-item active">
+                    <strong>Diyetisyen Yorumları</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+        </div>
+    </div>
+    <div class="wrapper wrapper-content  animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <h2>Yorum Tablosu</h2>
+                        <div class="clients-list">
+                            <ul class="nav nav-tabs">
+                                <li><a class="nav-link active" data-toggle="tab" href="#tab-1"><i class="fa fa-user"></i> Yorum</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="tab-1" class="tab-pane active">
+                                    <div class="full-height-scroll">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Kullanıcı İsmi</th>
+                                                        <th>Yorum</th>
+                                                        <th></th>
+                                                        <th>Danışman İsmi</th>
+                                                        <th>Puan</th>
+                                                        <th>Yorum Durumu</th>
+                                                        <th>Sil</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in Model)
+                                                    {
+                                                        <tr>
+                                                            <td class="client-avatar"><img alt="image" src="~/resim/@item.Client.ClientImage"> </td>
+                                                            <td><a href="#contact-1" class="client-link">@item.Client.ClientName @item.Client.ClientSurName</a></td>
+                                                            <td style="color:darkslategrey"><i style="color:forestgreen" class="fa fa-comment"> </i> @item.CommentDescription</td>
+                                                            <td class="client-avatar"><img alt="image" src="~/resim/@item.Consultant.ConsultantImage"> </td>
+                                                            <td>@item.Consultant.ConsultantName @item.Consultant.ConsultantSurName</td>
+                                                            <td style="color:black" class="contact-type"><i style="color: yellow" class="fa fa-star"></i> @item.ConsultantScore </td>
+                                                            @if(item.CommentStatus==true)
+                                                            {
+                                                                <td style="color:black" class="contact-type"><i style="color: limegreen" class="fa fa-check"></i> Aktif </td>
+                                                                <td style="font:bold"><a href="/AdminComment/ConsultantCommentDelete/@item.CommentID" style="color:red">Sil</a></td>
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <td style="color:black" class="contact-type"><i style="color: red" class="fa fa-check"></i> Pasif </td>
+                                                                <td></td>
+                                                            }
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @section scripts{ }
+
+
+</body>
+</html>
+
+

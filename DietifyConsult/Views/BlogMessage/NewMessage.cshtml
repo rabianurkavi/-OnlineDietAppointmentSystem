@@ -1,0 +1,131 @@
+﻿@model Entities.Concrete.Message
+@{
+    ViewData["Title"] = "NewMessage";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesaj Gönder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .message-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .message-send-form {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+            .message-send-form h2 {
+                margin-top: 0;
+                margin-bottom: 20px;
+                font-size: 24px;
+            }
+
+            .message-send-form form {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .message-send-form label {
+                margin-bottom: 8px;
+                font-weight: bold;
+                font-size: 16px;
+            }
+
+            .message-send-form .form-control {
+                padding: 10px;
+                margin-bottom: 15px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                font-size: 16px;
+                width: calc(100% - 22px); /* input genişliği form padding ve border genişliği kadar azaltıldı */
+            }
+
+            .message-send-form button {
+                background-color: #000;
+                color: #fff;
+                border: none;
+                padding: 12px 24px;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+                font-size: 16px;
+                text-transform: uppercase;
+                width: fit-content; /* button genişliği içeriğe göre otomatik ayarlandı */
+                align-self: flex-start; /* sol kenara yaslandı */
+                margin-top: 10px; /* üst boşluk eklendi */
+            }
+
+                .message-send-form button:hover {
+                    background-color: #333;
+                }
+
+        .back-button {
+            background-color: #ccc; /* gri */
+            color: #000; /* siyah */
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            margin-top: 10px; /* üst boşluk eklendi */
+            align-self: flex-start; /* sol kenara yaslandı */
+        }
+
+            .back-button:hover {
+                background-color: #999; /* hover durumunda biraz daha koyu gri */
+                color: black;
+            }
+
+            .back-button i {
+                margin-right: 5px;
+            }
+    </style>
+</head>
+<body>
+    <div class="message-container">
+        <div class="message-send-form">
+            <h2>Mesaj Gönder</h2>
+            @using (Html.BeginForm("NewMessage", "BlogMessage", FormMethod.Post))
+            {
+                <div>
+                    @Html.Label("Alıcı: ")
+                    @Html.DropDownListFor(x => x.ReceiverID, (List<SelectListItem>)ViewBag.mailList, new { @class = "form-control" })
+                </div>
+                <div>
+                    @Html.Label("Konu: ")
+                    @Html.TextBoxFor(x => x.Subject, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Subject)
+                </div>
+                <div>
+                    @Html.Label("Mesaj: ")
+                    @Html.TextAreaFor(x => x.MessageDetails, new { @class = "form-control", rows = 4 })
+                </div>
+                <button type="submit">Mesaj Gönder</button>
+            }
+            <a href="javascript:history.back()" class="back-button"><i class="fas fa-arrow-left"></i> Geri</a>
+        </div>
+    </div>
+</body>
+</html>
+
