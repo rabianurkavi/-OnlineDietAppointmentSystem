@@ -114,25 +114,25 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="message-header">
-            <img src="~/resim/@Model.SenderUser.ClientImage" alt="Sender Avatar" class="sender-avatar">
-            <div class="message-details">
-                <h4>@Model.Subject</h4>
-                <p>@Model.SenderUser.ClientName @Model.SenderUser.ClientSurName</p>
-                <p>@Model.SenderUser.ClientEmail</p>
-            </div>
-        </div>
-        <div class="message-content">
-            <p>@Model.MessageDetails</p>
-        </div>
-        <div class="message-date">
-            <p>Gönderilme Tarihi: @Model.MessageDate.ToString("dd/MM/yyyy HH:mm")</p>
-        </div>
-        <div>
-            <a href="javascript:history.back()" class="back-button"><i class="fas fa-arrow-left"></i> Geri</a>
-            <a href="/Message/SendMessage/@Model.MessageID" class="reply-button"><i class="fas fa-reply"></i> Yanıtla</a>
+<div class="container">
+    <div class="message-header">
+        <img src="~/resim/@Model.SenderUser.ClientImage" alt="Sender Avatar" class="sender-avatar">
+        <div class="message-details">
+            <h4>@Model.Subject</h4>
+            <p>@Model.SenderUser.ClientName @Model.SenderUser.ClientSurName</p>
+            <p>@Model.SenderUser.ClientEmail</p>
         </div>
     </div>
+    <div class="message-content">
+        <p>@Model.MessageDetails</p>
+    </div>
+    <div class="message-date">
+        <p>Gönderilme Tarihi: @Model.MessageDate.ToString("dd/MM/yyyy HH:mm")</p>
+    </div>
+    <div>
+        <a href="javascript:history.back()" class="back-button"><i class="fas fa-arrow-left"></i> Geri</a>
+        <a href="/Message/SendMessage/@Model.MessageID" class="reply-button"><i class="fas fa-reply"></i> Yanıtla</a>
+    </div>
+</div>
 </body>
 </html>

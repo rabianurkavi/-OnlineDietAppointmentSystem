@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Entities.Concrete.Consultant>
+﻿@using System.Globalization
+@model IEnumerable<Entities.Concrete.Consultant>
 @{
     ViewData["Title"] = "ConsultantDetails";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -9,174 +10,191 @@
 
 <body>
 
-            <div class="row wrapper border-bottom white-bg page-heading">
-                <div class="col-lg-10">
-                    <h2>Diyetisyen Profili</h2>
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <a href="/Admin/Dashboard/">Ana Sayfa</a>
-                        </li>
-                        <li class="breadcrumb-item">
-                            <a href="/AdminConsultant/Index/">Diyetisyenler</a>
-                        </li>
-                        <li class="breadcrumb-item active">
-                            <strong>Diyetisyen Profili</strong>
-                        </li>
-                    </ol>
-                </div>
-                <div class="col-lg-2">
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Diyetisyen Profili</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/Admin/Dashboard/">Ana Sayfa</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="/AdminConsultant/Index/">Diyetisyenler</a>
+            </li>
+            <li class="breadcrumb-item active">
+                <strong>Diyetisyen Profili</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
 
+    </div>
+</div>
+@foreach (var item in Model)
+{
+    <div class="wrapper wrapper-content">
+
+        <div class="row animated fadeInRight">
+
+            <div class="col-md-4">
+                <div class="ibox ">
+                    <div class="ibox-title">
+                        <h5> Diyetisyen Profil Detayı</h5>
+                        @if (item.ConsultantStatus)
+                        {
+                            <a href="/AdminConsultant/ConsultantDelete/@item.ConsultantID" type="button" class="btn btn-danger btn-sm btn-danger"><i class="fa fa-trash"></i> Kullanıcı Sil</a>
+                        }
+                        else
+                        {
+                            <a href="/AdminConsultant/ConsultantStatusAdd/@item.ConsultantID" type="button" class="btn btn-success btn-sm btn-success"><i class="fa fa-plus"></i> Kullanıcı Aktif Yap</a>
+                        }
+                    </div>
+                    <div>
+                        <div class="ibox-content no-padding border-left-right">
+                            <img style="width: 470px; height:471px;" alt="image" class="img-fluid" src="~/resim/@item.ConsultantImage">
+                        </div>
+                        <div class="ibox-content profile-content">
+                            <h4>
+                                <strong>@item.ConsultantName @item.ConsultantSurName</strong>
+                            </h4>
+                            <br>
+                            <p><i class="fa fa-map-marker"></i> @item.ConsultantAddress & Seans Ücreti: @item.Price <i class="fa fa-try"></i></p>
+
+                            <h5>
+                                İş Deneyimleri
+                            </h5>
+                            <ul>
+                                @foreach (var education in item.Educations)
+                                {
+                                    <li style="color:#a0a1a5">
+                                        @education.EducationLevel - @education.UniversityName &nbsp @education.UniversityGraduateHistory.Year - @education.UniversityEndDate.Year
+                                    </li>
+                                }
+                            </ul>
+                            <h5>
+                                Eğitim Bilgileri
+                            </h5>
+                            <ul>
+                                @foreach (var workExperiences in item.WorkExperiences)
+                                {
+                                    <li style="color:#a0a1a5">
+                                        @workExperiences.CompanyName &nbsp @workExperiences.StartingDate.Year - @(workExperiences.EndDate != null ? workExperiences.EndDate.Value.ToString("yyyy") : "Devam ediyor.")
+                                    </li>
+                                }
+                            </ul>
+                            <h5>
+                                Uzmanlık Alanları
+                            </h5>
+                            @{
+                                var specializations = item.Specialization.Split(',');
+                            }
+
+                            @if (specializations.Any())
+                            {
+                                <ul>
+                                    @foreach (var specialization in specializations)
+                                    {
+                                        <li style="color:#a0a1a5">@specialization.Trim()</li>
+                                    }
+                                </ul>
+                            }
+                            <h5>
+                                Blogları
+                            </h5>
+                            <ul>
+                                @foreach (var blogs in item.Blogs)
+                                {
+                                    <li style="color:#a0a1a5">
+                                        <a href="/Blog/BlogDetails/@blogs.BlogID" style="color:gray">
+                                            @blogs.BlogTitle &nbsp
+                                            <i class="fa fa-star" style="color: #f9c72e; margin-right: 5px;">
+                                                <span> @blogs.BlogScore &nbsp</span>
+                                            </i>
+
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                            <br>
+                            <p>
+                                <i class="fa fa-phone"></i> @item.PhoneNumber
+                            </p>
+                            <p>
+                                <i class="fa fa-envelope"></i> @item.ConsultantEmail
+                            </p>
+                            <p></p>
+                            <div class="row m-t-lg">
+                                <div class="col-md-4">
+                                    <span class="bar">5,3,9,6,5,9,7,3,5,2</span>
+                                    <h5>
+                                        <strong>Blog Sayısı: @ViewBag.TotalBlog</strong>
+                                    </h5>
+                                </div>
+                                <div class="col-md-4">
+                                    <span class="line">5,3,9,6,5,9,7,3,5,2</span>
+                                    <h5>
+                                        <strong>Yorum Sayısı: @ViewBag.TotalComment</strong>
+                                    </h5>
+                                </div>
+                                <div class="col-md-4">
+                                    <span class="bar">5,3,9,6,5,9,7,3,5</span>
+                                    <h5>
+                                        <strong>Toplam Randevu: @ViewBag.TotalAppointment</strong>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="user-button">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button type="button" class="btn btn-primary btn-sm btn-block"><i class="fa fa-envelope"></i> Mesaj Gönder</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-              @foreach(var item in Model)
-            {
-        <div class="wrapper wrapper-content">
-            
-            <div class="row animated fadeInRight">
-              
-                <div class="col-md-4">
-                    <div class="ibox ">
-                        <div class="ibox-title">
-                            <h5> Diyetisyen Profil Detayı</h5>
-                            @if(item.ConsultantStatus==true)
-                            {
-                                <a href="/AdminConsultant/ConsultantDelete/@item.ConsultantID" type="button" class="btn btn-danger btn-sm btn-danger"><i class="fa fa-trash"></i> Kullanıcı Sil</a>
-                            }
-                            else
-                            {
-                                <a href="/AdminConsultant/ConsultantStatusAdd/@item.ConsultantID" type="button" class="btn btn-success btn-sm btn-success"><i class="fa fa-plus"></i> Kullanıcı Aktif Yap</a>
-                            }
+
+            <div class="col-md-8">
+                <div class="ibox ">
+                    <div class="ibox-title">
+                        <h5>Yorumlar</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li>
+                                    <a href="#" class="dropdown-item">Config option 1</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-item">Config option 2</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
                         </div>
+                    </div>
+                    <div class="ibox-content">
+
                         <div>
-                            <div class="ibox-content no-padding border-left-right">
-                                <img style="width: 470px; height:471px;" alt="image" class="img-fluid" src="~/resim/@item.ConsultantImage">
-                            </div>
-                            <div class="ibox-content profile-content">
-                                <h4><strong>@item.ConsultantName @item.ConsultantSurName</strong></h4>
-                                <br>
-                                <p><i class="fa fa-map-marker"></i> @item.ConsultantAddress & Seans Ücreti: @item.Price <i class="fa fa-try"></i></p>
-                               
-                                <h5>
-                                    İş Deneyimleri
-                                </h5>
-                                <ul>
-                                    @foreach (var education in item.Educations)
-                                    {
-                                        <li style="color:#a0a1a5">
-                                            @education.EducationLevel - @education.UniversityName &nbsp @education.UniversityGraduateHistory.Year - @education.UniversityEndDate.Year
-                                        </li>
-                                    }
-                                </ul>
-                                <h5>
-                                    Eğitim Bilgileri
-                                </h5>
-                                <ul>
-                                    @foreach (var workExperiences in item.WorkExperiences)
-                                    {
-                                        <li style="color:#a0a1a5">
-                                            @workExperiences.CompanyName &nbsp @workExperiences.StartingDate.Year - @(workExperiences.EndDate != null ? workExperiences.EndDate.Value.ToString("yyyy") : "Devam ediyor.")
-                                        </li>
-                                    }
-                                </ul>
-                                <h5>
-                                    Uzmanlık Alanları
-                                </h5>
-                                @{
-                                    string[] specializations = item.Specialization.Split(',');
-                                }
-
-                                @if (specializations.Any())
-                                {
-                                    <ul>
-                                        @foreach (var specialization in specializations)
-                                        {
-                                            <li style="color:#a0a1a5">@specialization.Trim()</li>
-                                        }
-                                    </ul>
-                                }
-                                <h5>
-                                    Blogları
-                                </h5>
-                                <ul>
-                                    @foreach (var blogs in item.Blogs)
-                                    {
-                                        <li style="color:#a0a1a5">
-                                            <a href="/Blog/BlogDetails/@blogs.BlogID" style="color:gray">
-                                                @blogs.BlogTitle &nbsp <i class="fa fa-star" style="color: #f9c72e; margin-right: 5px;"><span> @blogs.BlogScore &nbsp</span></i>  
-
-                                            </a>
-                                        </li>
-                                    }
-                                </ul>
-                                <br>
-                                <p><i class="fa fa-phone"></i> @item.PhoneNumber</p>
-                                <p><i class="fa fa-envelope"></i> @item.ConsultantEmail</p>
-                                <p></p>
-                                <div class="row m-t-lg">
-                                    <div class="col-md-4">
-                                        <span class="bar">5,3,9,6,5,9,7,3,5,2</span>
-                                        <h5><strong>Blog Sayısı: @ViewBag.TotalBlog</strong></h5>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <span class="line">5,3,9,6,5,9,7,3,5,2</span>
-                                        <h5><strong>Yorum Sayısı: @ViewBag.TotalComment</strong> </h5>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <span class="bar">5,3,9,6,5,9,7,3,5</span>
-                                        <h5><strong>Toplam Randevu: @ViewBag.TotalAppointment</strong> </h5>
-                                    </div>
-                                </div>
-                                <div class="user-button">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <button type="button" class="btn btn-primary btn-sm btn-block"><i class="fa fa-envelope"></i> Mesaj Gönder</button>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-                </div>
-                    </div>
-                    
-                <div class="col-md-8">
-                    <div class="ibox ">
-                        <div class="ibox-title">
-                            <h5>Yorumlar</h5>
-                            <div class="ibox-tools">
-                                <a class="collapse-link">
-                                    <i class="fa fa-chevron-up"></i>
-                                </a>
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <i class="fa fa-wrench"></i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-user">
-                                    <li><a href="#" class="dropdown-item">Config option 1</a>
-                                    </li>
-                                    <li><a href="#" class="dropdown-item">Config option 2</a>
-                                    </li>
-                                </ul>
-                                <a class="close-link">
-                                    <i class="fa fa-times"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ibox-content">
-
-                            <div>
-                                @foreach(var comments in item.Comments)
-                                {
+                            @foreach (var comments in item.Comments)
+                            {
                                 <div class="feed-activity-list">
                                     <div class="feed-element">
                                         <a href="#" class="float-left">
-                                                <img alt="image" class="rounded-circle" src="~/resim/@comments.Client.ClientImage">
+                                            <img alt="image" class="rounded-circle" src="~/resim/@comments.Client.ClientImage">
                                         </a>
                                         <div class="media-body ">
                                             <small class="float-right">Yapılan Yorum</small>
                                             <strong>@comments.Client.ClientName @comments.Client.ClientSurName</strong> kullanıcısı <strong>@item.ConsultantName @item.ConsultantSurName'a </strong> <strong>@comments.ConsultantScore</strong> puan verdi. <br>
-                                                <small class="text-muted">@(((DateTime)comments.CommentDate).ToString("dd MMMM yyyy", new System.Globalization.CultureInfo("tr-TR")))</small>
+                                            <small class="text-muted">@comments.CommentDate.ToString("dd MMMM yyyy", new CultureInfo("tr-TR"))</small>
                                             <div class="well">
-                                               @comments.CommentDescription
+                                                @comments.CommentDescription
                                             </div>
                                             <div class="float-right">
                                                 <a href="/AdminComment/ConsultantCommentDelete/@comments.CommentID" class="btn btn-xs btn-danger"><i class="fa fa-delete"></i> Sil</a>
@@ -186,20 +204,20 @@
                                 </div>
                             }
 
-                                <button class="btn btn-primary btn-block m"><i class="fa fa-arrow-down"></i>  Daha Fazla Yorum Gör</button>
-
-                            </div>
+                            <button class="btn btn-primary btn-block m"><i class="fa fa-arrow-down"></i> Daha Fazla Yorum Gör</button>
 
                         </div>
-                    </div>
 
+                    </div>
                 </div>
+
             </div>
         </div>
-        }
-    @section scripts{ }
+    </div>
+}
+
+@section scripts{ }
 
 </body>
 
 </html>
-

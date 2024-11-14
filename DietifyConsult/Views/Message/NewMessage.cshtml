@@ -104,28 +104,28 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="message-send-form">
-            <h2>Mesaj Gönder</h2>
-            @using (Html.BeginForm("NewMessage", "Message", FormMethod.Post))
-            {
-                <div>
-                    @Html.Label("Alıcı: ")
-                    @Html.DropDownListFor(x => x.ReceiverID, (List<SelectListItem>)ViewBag.mailList, new { @class = "form-control" })
-                </div>
-                <div>
-                    @Html.Label("Konu: ")
-                    @Html.TextBoxFor(x => x.Subject, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(x => x.Subject)
-                </div>
-                <div>
-                    @Html.Label("Mesaj: ")
-                    @Html.TextAreaFor(x => x.MessageDetails, new { @class = "form-control", rows = 4 })
-                </div>
-                <button type="submit">Mesaj Gönder</button>
-            }
-            <a href="javascript:history.back()" class="back-button"><i class="fas fa-arrow-left"></i> Geri</a>
-        </div>
+<div class="container">
+    <div class="message-send-form">
+        <h2>Mesaj Gönder</h2>
+        @using (Html.BeginForm("NewMessage", "Message", FormMethod.Post))
+        {
+            <div>
+                @Html.Label("Alıcı: ")
+                @Html.DropDownListFor(x => x.ReceiverID, (List<SelectListItem>)ViewBag.mailList, new { @class = "form-control" })
+            </div>
+            <div>
+                @Html.Label("Konu: ")
+                @Html.TextBoxFor(x => x.Subject, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Subject)
+            </div>
+            <div>
+                @Html.Label("Mesaj: ")
+                @Html.TextAreaFor(x => x.MessageDetails, new { @class = "form-control", rows = 4 })
+            </div>
+            <button type="submit">Mesaj Gönder</button>
+        }
+        <a href="javascript:history.back()" class="back-button"><i class="fas fa-arrow-left"></i> Geri</a>
     </div>
+</div>
 </body>
 </html>

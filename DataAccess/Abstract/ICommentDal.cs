@@ -1,17 +1,10 @@
 ﻿using DataAccess.Abstract.Repositories;
 using Entities.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DataAccess.Abstract
+namespace DataAccess.Abstract;
+
+public interface ICommentDal : IGenericDal<Comment>
 {
-    public interface ICommentDal:IGenericDal<Comment>
-    {
-        List<Comment> GetListWithClient(int id);
-        List<Comment> ListWİthConsultantandClient();
-
-    }
+    List<Comment> GetListWithClient(int id);
+    List<Comment> ListWİthConsultantandClient();
 }

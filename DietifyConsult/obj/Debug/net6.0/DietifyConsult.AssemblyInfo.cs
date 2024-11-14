@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DietifyConsult")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a9164f65c6052baa018ec3e55cf0a408a93cfb74")]
 [assembly: System.Reflection.AssemblyProductAttribute("DietifyConsult")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DietifyConsult")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

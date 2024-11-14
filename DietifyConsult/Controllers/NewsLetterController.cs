@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace DietifyConsult.Controllers
+namespace DietifyConsult.Controllers;
+
+public class NewsLetterController : Controller
 {
-    public class NewsLetterController : Controller
+    public IActionResult Index()
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        return View();
     }
 }

@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace DietifyConsult.ViewComponents.Consultant
+namespace DietifyConsult.ViewComponents.Consultant;
+
+public class ConsultantNotification : ViewComponent
 {
-    public class ConsultantNotification:ViewComponent
+    public IViewComponentResult Invoke()
     {
-        public IViewComponentResult Invoke()
-        {
-            return View();
-        }
+        return View();
     }
 }

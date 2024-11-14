@@ -1,16 +1,12 @@
 ﻿using DataAccess.Abstract.Repositories;
 using Entities.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DataAccess.Abstract
+namespace DataAccess.Abstract;
+
+public interface IAppointmentDal : IGenericDal<Appointment>
 {
-    public interface IAppointmentDal:IGenericDal<Appointment>
-    {
-        List<Appointment> ClientByAppointment(int consultantId);
-        List<Appointment> ClientAndConsultantByAppointment();
-    }
+    List<Appointment> ClientByAppointment(int consultantId);
+    List<Appointment> ClientAndConsultantByAppointment();
+    List<Appointment> ClientAppointmentList(int clientID);
+    Appointment GetAppointmentById(int appointmentID);
 }

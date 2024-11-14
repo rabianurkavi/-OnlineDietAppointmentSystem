@@ -1,87 +1,89 @@
-﻿@model IEnumerable<Entities.Concrete.Blog>
+﻿@using System.Globalization
+@model IEnumerable<Entities.Concrete.Blog>
 @{
-	ViewData["Title"] = "BlogDetails";
-	Layout = "~/Views/Shared/UserLayout.cshtml";
-	string cizgi = "-";
+    ViewData["Title"] = "BlogDetails";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+    var cizgi = "-";
 }
 
 <body>
 
-	<!--//banner-->
-	<section class="banner-bottom">
-		<!--/blog-->
-		<div class="container">
-			<div class="row">
-				<!--left-->
-				<div class="col-lg-8 left-blog-info-w3layouts-agileits text-left">
-					@foreach(var item in Model)
-					{
-					<div class="blog-grid-top">
-						<div class="b-grid-top">
-							<div class="blog_info_left_grid">
-								<a href="single.html">
-									<img src="~/resim/@item.BlogImage" class="img-fluid" alt="">
-								</a>
-							</div>
-							<div class="blog-info-middle">
-								<ul>
-									<li>
-										<a href="#">
-												<i class="far fa-calendar-alt"></i> @(((DateTime)item.BlogCreateDate).ToString("dd MMMM yyyy", new System.Globalization.CultureInfo("tr-TR")))
-										</a>
-									</li>
-									<li class="mx-2">
-										<a href="#">
-											@if(@item.BlogScore==0)
-											{
-													<i class="far fa-star"></i> @cizgi
-													
-											}
-											else{
-												<i class="far fa-star"></i> @item.BlogScore
-											}
-											
-										</a>
-									</li>
+<!--//banner-->
+<section class="banner-bottom">
+    <!--/blog-->
+    <div class="container">
+        <div class="row">
+            <!--left-->
+            <div class="col-lg-8 left-blog-info-w3layouts-agileits text-left">
+                @foreach (var item in Model)
+                {
+                    <div class="blog-grid-top">
+                        <div class="b-grid-top">
+                            <div class="blog_info_left_grid">
+                                <a href="single.html">
+                                    <img src="~/resim/@item.BlogImage" class="img-fluid" alt="">
+                                </a>
+                            </div>
+                            <div class="blog-info-middle">
+                                <ul>
+                                    <li>
+                                        <a href="#">
+                                            <i class="far fa-calendar-alt"></i> @item.BlogCreateDate.ToString("dd MMMM yyyy", new CultureInfo("tr-TR"))
+                                        </a>
+                                    </li>
+                                    <li class="mx-2">
+                                        <a href="#">
+                                            @if (item.BlogScore == 0)
+                                            {
+                                                <i class="far fa-star"></i>
+                                                @cizgi
+                                            }
+                                            else
+                                            {
+                                                <i class="far fa-star"></i>
+                                                @item.BlogScore
+                                            }
 
-								</ul>
-							</div>
-						</div>
+                                        </a>
+                                    </li>
 
-						<h3>
-							<a href="">@item.BlogTitle </a>
-						</h3>
-						<p>
-							@item.BlogDescription
-						</p>
-						<a href="/Blog/Index" class="btn btn-primary read-m">Blog Listesi</a>
-						</div>
-					}
-					@await Component.InvokeAsync("BlogCommentListByBlog",new { id = ViewBag.i })
-@*					@await Html.PartialAsync("~/Views/BlogComment/CommentListByBlog.cshtml")
-					*@					@await Html.PartialAsync("~/Views/BlogComment/PartialAddComment.cshtml")
-				
-				</div>
+                                </ul>
+                            </div>
+                        </div>
 
-				<!--//left-->
-				<!--right-->
-				<aside class="col-lg-4 agileits-w3ls-right-blog-con text-right">
-					<div class="right-blog-info text-left">
-						<h4>Sitemize abone ol</h4>
+                        <h3>
+                            <a href="">@item.BlogTitle </a>
+                        </h3>
+                        <p>
+                            @item.BlogDescription
+                        </p>
+                        <a href="/Blog/Index" class="btn btn-primary read-m">Blog Listesi</a>
+                    </div>
+                }
+                @await Component.InvokeAsync("BlogCommentListByBlog", new { id = ViewBag.i })
+                @*					@await Html.PartialAsync("~/Views/BlogComment/CommentListByBlog.cshtml")
+					*@ @await Html.PartialAsync("~/Views/BlogComment/PartialAddComment.cshtml")
 
-						@await Html.PartialAsync("~/Views/Blog/PartialSubscribe.cshtml")
+            </div>
 
-						@await Component.InvokeAsync("BlogTopWeek")
-						
-						@await Component.InvokeAsync("RecentBlog")
+            <!--//left-->
+            <!--right-->
+            <aside class="col-lg-4 agileits-w3ls-right-blog-con text-right">
+                <div class="right-blog-info text-left">
+                    <h4>Sitemize abone ol</h4>
 
-					</div>
+                    @await Html.PartialAsync("~/Views/Blog/PartialSubscribe.cshtml")
 
-				</aside>
-				<!--//right-->
-			</div>
-		</div>
-	</section>
+                    @await Component.InvokeAsync("BlogTopWeek")
+
+                    @await Component.InvokeAsync("RecentBlog")
+
+                </div>
+
+            </aside>
+            <!--//right-->
+        </div>
+    </div>
+</section>
 
 </body>
-

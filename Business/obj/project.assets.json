@@ -2248,11 +2248,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\kavir\\source\\repos\\DietifyConsult\\Business\\Business.csproj",
+      "projectUniqueName": "C:\\Users\\kavir\\OneDrive\\Masaüstü\\DietifyConsult\\DietifyConsult\\Business\\Business.csproj",
       "projectName": "Business",
-      "projectPath": "C:\\Users\\kavir\\source\\repos\\DietifyConsult\\Business\\Business.csproj",
+      "projectPath": "C:\\Users\\kavir\\OneDrive\\Masaüstü\\DietifyConsult\\DietifyConsult\\Business\\Business.csproj",
       "packagesPath": "C:\\Users\\kavir\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\kavir\\source\\repos\\DietifyConsult\\Business\\obj\\",
+      "outputPath": "C:\\Users\\kavir\\OneDrive\\Masaüstü\\DietifyConsult\\DietifyConsult\\Business\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\kavir\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -2263,17 +2263,18 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\kavir\\source\\repos\\DietifyConsult\\DataAccess\\DataAccess.csproj": {
-              "projectPath": "C:\\Users\\kavir\\source\\repos\\DietifyConsult\\DataAccess\\DataAccess.csproj"
+            "C:\\Users\\kavir\\OneDrive\\Masaüstü\\DietifyConsult\\DietifyConsult\\DataAccess\\DataAccess.csproj": {
+              "projectPath": "C:\\Users\\kavir\\OneDrive\\Masaüstü\\DietifyConsult\\DietifyConsult\\DataAccess\\DataAccess.csproj"
             },
-            "C:\\Users\\kavir\\source\\repos\\DietifyConsult\\Entities\\Entities.csproj": {
-              "projectPath": "C:\\Users\\kavir\\source\\repos\\DietifyConsult\\Entities\\Entities.csproj"
+            "C:\\Users\\kavir\\OneDrive\\Masaüstü\\DietifyConsult\\DietifyConsult\\Entities\\Entities.csproj": {
+              "projectPath": "C:\\Users\\kavir\\OneDrive\\Masaüstü\\DietifyConsult\\DietifyConsult\\Entities\\Entities.csproj"
             }
           }
         }
@@ -2282,6 +2283,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -2333,7 +2339,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
       }
     }
   }

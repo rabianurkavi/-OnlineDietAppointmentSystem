@@ -1,0 +1,102 @@
+﻿@model IEnumerable<Entities.Concrete.Appointment>
+@{
+    ViewData["Title"] = "DidntPaymentAppointment";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var i = 1;
+}
+
+<!DOCTYPE html>
+<html>
+<body>
+
+
+    <div class="wrapper wrapper-content">
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="ibox ">
+                    <div class="ibox-title">
+                        <h5>Onaylanan ve Ödeme Yapılmayan Randevular </h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li>
+                                    <a href="#" class="dropdown-item">Config option 1</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-item">Config option 2</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+
+                                    <th>#</th>
+                                    <th></th>
+                                    <th>Diyetisyen </th>
+                                    <th>Diyetisyen Numarası </th>
+                                    <th></th>
+                                    <th>Kullanıcı Adı </th>
+                                    <th>Kullanıcı Numarası </th>
+                                    <th>Randevu Tarihi </th>
+                                    <th>Durum</th>
+                                    <th>Ödeme Durumu </th>
+                                    <th>Fiyat</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    @if (item.AppointmentStatus == "Onaylandı" && item.PaymentStatus == false)
+                                    {
+                                        <tr>
+                                            <td>@i</td>
+                                            <td class="client-avatar">
+                                                <img alt="image" src="~/resim/@item.Consultant.ConsultantImage">
+                                            </td>
+                                            <td>@item.Consultant.ConsultantName @item.Consultant.ConsultantSurName </td>
+                                            <td>@item.Consultant.PhoneNumber</td>
+                                            <td class="client-avatar">
+                                                <img alt="image" src="~/resim/@item.Client.ClientImage">
+                                            </td>
+                                            <td>@item.Client.ClientName @item.Client.ClientSurName</td>
+                                            <td>@item.Client.PhoneNumber </td>
+                                            <td>@item.AppointmentDateTime</td>
+                                            <td style="color:mediumseagreen">@item.AppointmentStatus</td>
+                                            <td style="color:red">Ödeme Yapılmadı</td>
+                                            <td><b>@item.Consultant.Price ₺</b></td>
+
+                                        </tr>
+                                        i++;
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    @section scripts{ }
+
+</body>
+</html>
+
+

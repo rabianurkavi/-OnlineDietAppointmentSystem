@@ -1,0 +1,170 @@
+﻿@model DietifyConsult.Models.DietitianDetailsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/UserLayout.cshtml"; 
+}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+            crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2; /* Arka plan rengi */
+        }
+
+        .div-container {
+            max-width: 1000px; /* Maksimum genişlik 1000px */
+            margin: 50px auto; /* Yatayda ortalanma ve üst/alt boşluklar */
+            padding: 30px; /* İç boşluk 30px */
+            background-color: #fff; /* Dikdörtgen arka plan rengi */
+            border-radius: 10px; /* Köşe yuvarlama */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Gölge */
+            min-height: 500px; /* Minimum yükseklik 500px */
+        }
+
+        .div-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+            .div-header h2 {
+                font-size: 24px;
+                font-weight: bold;
+                color: #000; /* Randevu ve ödeme işlemleri için siyah renk */
+            }
+
+        .form-container {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+            .form-container label {
+                margin-right: 10px;
+            }
+
+        .button-container {
+            text-align: center; /* Butonları yatayda ortalar */
+            margin-bottom: 20px; /* Butonun altına boşluk ekler */
+        }
+
+            .button-container button {
+                padding: 8px 16px;
+                font-size: 14px;
+                background-color: #01cd74;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+                width: auto; /* Butonların genişliği otomatik */
+                margin: 0 10px; /* Butonların yatayda ortalanması ve aralarına boşluk */
+            }
+
+                .button-container button:hover {
+                    background-color: #008d4c;
+                }
+
+        .available-times {
+            text-align: center; /* Saat listesi ortalanacak */
+            margin-bottom: 10px;
+            font-size: 18px; /* Yazı boyutu biraz büyütüldü */
+        }
+
+            .available-times h4 {
+                font-size: 20px; /* Başlık boyutu biraz daha büyütüldü */
+                margin-bottom: 5px;
+            }
+
+        .time-list {
+            list-style: none;
+            padding: 0;
+            display: flex; /* Liste öğelerini yatayda sıralayın */
+            flex-direction: column; /* Saatleri alt alta gösterin */
+        }
+
+            .time-list li {
+                margin-bottom: 5px;
+                display: inline-block; /* Liste öğelerini yatayda sıralayın */
+                margin-right: 10px; /* Liste öğeleri arasına boşluk ekleyin */
+            }
+    </style>
+</head>
+<body>
+    <div class="div-container">
+        <div class="div-header">
+            <h2>Randevu ve Ödeme İşlemleri</h2>
+        </div>
+        <h3 class="available-times">Uygun Saatler</h3>
+
+        <div class="form-container">
+            @if (Model.AvailableTimesByDay.Any())
+            {
+                <form method="post" action="/IntegrationAppointment/Details">
+                    <input type="hidden" name="id" value="@Model.Consultant.ConsultantID" />
+                    <label for="selectedDate">Tarih Seç:</label>
+                    <input type="date" name="selectedDate" id="selectedDate" min="@DateTime.Now.ToString("yyyy-MM-dd")" value="@Model.SelectedDate?.ToString("yyyy-MM-dd")" onchange="this.form.submit()">
+                </form>
+            }
+            else
+            {
+                <p>Seçili tarih için uygun saat bulunamadı.</p>
+            }
+        </div>
+
+        @if (Model.SelectedDate.HasValue)
+        {
+            <div class="available-times">
+                <h4>@Model.SelectedDate.Value.ToString("dd MMMM yyyy", new System.Globalization.CultureInfo("tr-TR"))</h4>
+                <ul class="time-list">
+                    @foreach (var time in Model.AvailableTimesByDay[Model.SelectedDate.Value].Where(t => t != new TimeSpan(12, 0, 0)))
+                    {
+                        <li>
+                            <input type="radio" name="selectedTime" id="@Model.SelectedDate.Value.ToString("yyyy-MM-dd")-@(time.ToString())" value="@time" required>
+                            <label for="@Model.SelectedDate.Value.ToString("yyyy-MM-dd")-@(time.ToString())">@time</label>
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
+
+        <div class="button-container">
+            <form method="post" action="/IntegrationAppointment/SaveAppointment">
+                <input type="hidden" name="ConsultantID" value="@Model.Consultant.ConsultantID" />
+                <input type="hidden" name="SelectedDate" value="@Model.SelectedDate?.ToString("yyyy-MM-dd")" />
+                <input type="hidden" name="SelectedTime" id="selectedTimeInput" />
+
+                <button type="button" onclick="window.history.back()" style="background-color: #000;">
+                    <i class="fas fa-arrow-left"></i> Geri Dön
+                </button>
+                <button id="continueButton" type="submit" onclick="setSelectedTime()">
+                    <i class="fas fa-arrow-right"></i> Devam Et
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Bugünden önceki tarihlerin seçilememesi için input alanına min attribute'ünün değeri olarak bugünün tarihini veriyoruz
+        document.getElementById("selectedDate").setAttribute("min", new Date().toISOString().split("T")[0]);
+
+        function setSelectedTime() {
+            var selectedTime = document.querySelector('input[name="selectedTime"]:checked');
+            if (selectedTime) {
+                document.getElementById('selectedTimeInput').value = selectedTime.value;
+            }
+        }
+    </script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</body>
+</html>

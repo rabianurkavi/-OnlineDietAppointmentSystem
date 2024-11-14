@@ -4,8 +4,10 @@
     Layout = "~/Views/Shared/UserLayout.cshtml";
 }
 <body>
-@*    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-*@    <!--//banner-->
+    @*    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    *@    <!--//banner-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <section class="banner-bottom">
         <!--/blog-->
         <div class="container">
@@ -71,13 +73,18 @@
                                 }
                             </p>
                             <hr>
-                            <h5>Yazdığı Bloglar</h5>
+                            <h5>İletişim Bilgileri</h5>
+                            <br>
+                            <ul class="icon-list">
+                                <li><i class="fas fa-phone"></i> Telefon Numarası: @item.PhoneNumber</li>
+                                <li><i class="fas fa-envelope"></i> Email Adresi: @item.ConsultantEmail</li>
+                            </ul>
                             <br>
                             <a href="/Consultant/Index" class="btn btn-primary read-m">Diyetisyen Listesi</a>
-                            <a href="/Test/Details/@item.ConsultantID" class="button">Randevu Al</a>
+                            <a href="/IntegrationAppointment/Details/@item.ConsultantID" class="button">Randevu Al</a>
 
-@*                            <div class="modal fade" id="myModal" role="dialog" data-url='@Url.Action("PartialDetails", "Test", new { id = item.ConsultantID })'></div>
-*@
+                            @*                            <div class="modal fade" id="myModal" role="dialog" data-url='@Url.Action("PartialDetails", "Test", new { id = item.ConsultantID })'></div>
+                        *@
                         </div>
 
                     }
@@ -148,23 +155,30 @@
                 background-color: #01cd74;
                 color: black
             }
+
+        .icon-list li {
+            color: #a0a1a5;
+            display: flex;
+            align-items: center;
+        }
+
+            .icon-list li i {
+                margin-right: 10px;
+            }
     </style>
-@*    <script type="text/javascript">
-        $(document).ready(function () {
+    @*    <script type="text/javascript">
+    $(document).ready(function () {
 
-            $('.button').click(function () {
+    $('.button').click(function () {
 
-                var url = $('#myModal').data('url');
-                $.get(url, function (data) {
+    var url = $('#myModal').data('url');
+    $.get(url, function (data) {
 
-                    $("#myModal").html(data);
-                    $("#myModal").modal('show');
-                });
-            });
+    $("#myModal").html(data);
+    $("#myModal").modal('show');
+    });
+    });
 
-        });
+    });
     </script>*@
 </body>
-
-
-

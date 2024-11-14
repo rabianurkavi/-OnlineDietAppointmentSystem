@@ -2,15 +2,15 @@
 using DataAccess.Concrete.EntityFramework;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DietifyConsult.ViewComponents.BlogScore
+namespace DietifyConsult.ViewComponents.BlogScore;
+
+public class BlogTopWeek : ViewComponent
 {
-    public class BlogTopWeek:ViewComponent
+    private readonly BlogManager blogManager = new(new EfBlogDal());
+
+    public IViewComponentResult Invoke()
     {
-        BlogManager blogManager = new BlogManager(new EfBlogDal());
-        public IViewComponentResult Invoke()
-        {
-            var values= blogManager.GetTopWeek();
-            return View(values);
-        }
+        var values = blogManager.GetTopWeek();
+        return View(values);
     }
 }

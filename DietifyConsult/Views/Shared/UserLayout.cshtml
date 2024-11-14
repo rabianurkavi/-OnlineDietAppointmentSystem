@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -7,7 +6,7 @@
 
 <head>
 
-	<script>
+    <script>
 		addEventListener("load", function () {
 			setTimeout(hideURLbar, 0);
 		}, false);
@@ -16,74 +15,74 @@
 			window.scrollTo(0, 1);
 		}
 	</script>
-	<link href="~/web/css/bootstrap.css" rel='stylesheet' type='text/css' />
-	<link rel="stylesheet" href="~/web/css/single.css">
-	<link href="~/web/css/style.css" rel='stylesheet' type='text/css' />
-	<link href="~/web/css/fontawesome-all.css" rel="stylesheet">
-	<link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
-		  rel="stylesheet">
-	<title>Diyet Dedektifleri</title>
-	<link rel="shortcut icon" href="~/consultant/assets/images/d.png" />
+    <link href="~/web/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="~/web/css/single.css">
+    <link href="~/web/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="~/web/css/fontawesome-all.css" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
+          rel="stylesheet">
+    <title>Diyet Dedektifleri</title>
+    <link rel="shortcut icon" href="~/consultant/assets/images/d.png"/>
 </head>
 
 <body>
-	<!--Header-->
+<!--Header-->
 
-	<header>
-		<div class="top-bar_sub_w3layouts container-fluid">
-			<div class="row">
-				<div class="col-md-4 logo text-left">
-					<a class="navbar-brand" href="~/Bog/Index">
-						<i class="fab fa-linode"></i> Diyet Dedektifleri
-					</a>
-				</div>
-				@await Component.InvokeAsync("LoginUserNotification")
-				<div class="col-md-4 log-icons text-right">
+<header>
+    <div class="top-bar_sub_w3layouts container-fluid">
+        <div class="row">
+            <div class="col-md-4 logo text-left">
+                <a class="navbar-brand" href="~/Bog/Index">
+                    <i class="fab fa-linode"></i> Diyet Dedektifleri
+                </a>
+            </div>
+            @await Component.InvokeAsync("LoginUserNotification")
+            <div class="col-md-4 log-icons text-right">
 
-					<ul class="social_list1 mt-3">
+                <ul class="social_list1 mt-3">
 
-						<li>
-							<a href="#" class="facebook1 mx-2">
-								<i class="fab fa-facebook-f"></i>
+                    <li>
+                        <a href="#" class="facebook1 mx-2">
+                            <i class="fab fa-facebook-f"></i>
 
-							</a>
-						</li>
-						<li>
-							<a href="#" class="twitter2">
-								<i class="fab fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="twitter2">
+                            <i class="fab fa-twitter"></i>
 
-							</a>
-						</li>
-						<li>
-							<a href="#" class="dribble3 mx-2">
-								<i class="fab fa-dribbble"></i>
-							</a>
-						</li>
-						<li>
-							<a href="#" class="pin">
-								<i class="fab fa-pinterest-p"></i>
-							</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		@await Html.PartialAsync("_HeaderPartial")
-	</header>
-	<!--//banner-->
-	<!--/main-->
-	@RenderBody()
-	<!--//main-->
-	<!--footer-->
-	@await Html.PartialAsync("_FooterPartial")
-	<!---->
-	<!-- js -->
-	<script src="~/web/js/jquery-2.2.3.min.js"></script>
-	<!-- //js -->
-	<!--/ start-smoth-scrolling -->
-	<script src="~/web/js/move-top.js"></script>
-	<script src="~/web/js/easing.js"></script>
-	<script>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="dribble3 mx-2">
+                            <i class="fab fa-dribbble"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="pin">
+                            <i class="fab fa-pinterest-p"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    @await Html.PartialAsync("_HeaderPartial")
+</header>
+<!--//banner-->
+<!--/main-->
+@RenderBody()
+<!--//main-->
+<!--footer-->
+@await Html.PartialAsync("_FooterPartial")
+<!---->
+<!-- js -->
+<script src="~/web/js/jquery-2.2.3.min.js"></script>
+<!-- //js -->
+<!--/ start-smoth-scrolling -->
+<script src="~/web/js/move-top.js"></script>
+<script src="~/web/js/easing.js"></script>
+<script>
 		jQuery(document).ready(function ($) {
 			$(".scroll").click(function (event) {
 				event.preventDefault();
@@ -93,9 +92,9 @@
 			});
 		});
 	</script>
-	<!--// end-smoth-scrolling -->
+<!--// end-smoth-scrolling -->
 
-	<script>
+<script>
 		$(document).ready(function () {
 			/*
 									var defaults = {
@@ -112,12 +111,12 @@
 
 		});
 	</script>
-	<a href="#home" class="scroll" id="toTop" style="display: block;">
-		<span id="toTopHover" style="opacity: 1;"> </span>
-	</a>
+<a href="#home" class="scroll" id="toTop" style="display: block;">
+    <span id="toTopHover" style="opacity: 1;"> </span>
+</a>
 
-	<!-- //Custom-JavaScript-File-Links -->
-	<script src="~/web/js/bootstrap.js"></script>
+<!-- //Custom-JavaScript-File-Links -->
+<script src="~/web/js/bootstrap.js"></script>
 
 </body>
 

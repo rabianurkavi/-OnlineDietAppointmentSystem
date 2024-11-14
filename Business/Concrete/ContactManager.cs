@@ -1,45 +1,40 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Business.Concrete
+namespace Business.Concrete;
+
+public class ContactManager : IContactService
 {
-	public class ContactManager : IContactService
-	{
-		IContactDal _contactDal;
-        public ContactManager(IContactDal contactDal)
-        {
-			_contactDal = contactDal;
+    private readonly IContactDal _contactDal;
 
-		}
-        public List<Contact> GetAll()
-		{
-			return _contactDal.GetAll();
-		}
+    public ContactManager(IContactDal contactDal)
+    {
+        _contactDal = contactDal;
+    }
 
-		public Contact GetById(int id)
-		{
-			return _contactDal.Get(x=>x.ContactId == id);	
-		}
+    public List<Contact> GetAll()
+    {
+        return _contactDal.GetAll();
+    }
 
-		public void TAdd(Contact t)
-		{
-			_contactDal.Insert(t);
-		}
+    public Contact GetById(int id)
+    {
+        return _contactDal.Get(x => x.ContactId == id);
+    }
 
-		public void TDelete(Contact t)
-		{
-			_contactDal.Delete(t);
-		}
+    public void TAdd(Contact t)
+    {
+        _contactDal.Insert(t);
+    }
 
-		public void TUpdate(Contact t)
-		{
-			_contactDal.Update(t);
-		}
-	}
+    public void TDelete(Contact t)
+    {
+        _contactDal.Delete(t);
+    }
+
+    public void TUpdate(Contact t)
+    {
+        _contactDal.Update(t);
+    }
 }

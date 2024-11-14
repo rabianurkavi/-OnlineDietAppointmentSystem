@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kavir\\source\\repos\\DietifyConsult\\Entities\\Entities.csproj": {}
+    "C:\\Users\\kavir\\OneDrive\\Masaüstü\\DietifyConsult\\DietifyConsult\\Entities\\Entities.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kavir\\source\\repos\\DietifyConsult\\Entities\\Entities.csproj": {
+    "C:\\Users\\kavir\\OneDrive\\Masaüstü\\DietifyConsult\\DietifyConsult\\Entities\\Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kavir\\source\\repos\\DietifyConsult\\Entities\\Entities.csproj",
+        "projectUniqueName": "C:\\Users\\kavir\\OneDrive\\Masaüstü\\DietifyConsult\\DietifyConsult\\Entities\\Entities.csproj",
         "projectName": "Entities",
-        "projectPath": "C:\\Users\\kavir\\source\\repos\\DietifyConsult\\Entities\\Entities.csproj",
+        "projectPath": "C:\\Users\\kavir\\OneDrive\\Masaüstü\\DietifyConsult\\DietifyConsult\\Entities\\Entities.csproj",
         "packagesPath": "C:\\Users\\kavir\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kavir\\source\\repos\\DietifyConsult\\Entities\\obj\\",
+        "outputPath": "C:\\Users\\kavir\\OneDrive\\Masaüstü\\DietifyConsult\\DietifyConsult\\Entities\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\kavir\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -22,6 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -34,6 +35,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -81,7 +87,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
         }
       }
     }

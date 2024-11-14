@@ -1,30 +1,26 @@
 using DataAccess.Concrete.EntityFramework;
+using DietifyConsult.Helper;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
-using Microsoft.EntityFrameworkCore;
 using Stripe;
-using System.Net;
 
-StripeConfiguration.ApiKey = "sk_test_51PJiMFKxKaGWHxtVtuGR9OoFn9IFe6X7Ggj2uXrxJXY7bXtHg7mAQEScSEdueGg7zBknUvN9PGT1M4iCMfWgKyT400hyyZ2y2a";
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DietifyConsultContext");
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddSession();//session için
-builder.Services.AddMvc(config =>//authorize iþlemleri
+builder.Services.AddSession(); //session için
+builder.Services.AddMvc(config => //authorize iþlemleri
 {
     var policy = new AuthorizationPolicyBuilder()
-    .RequireAuthenticatedUser()
-    .Build();
+        .RequireAuthenticatedUser()
+        .Build();
     config.Filters.Add(new AuthorizeFilter(policy));
 });
 builder.Services.AddMvc();
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x =>
-{
-    x.LoginPath = "/Login/Index/";
-
-});
+//payment
+builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("StripeSettings"));
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x => { x.LoginPath = "/Login/Index/"; });
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.Cookie.HttpOnly = true;
@@ -46,17 +42,19 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseStatusCodePagesWithReExecute("/ErrorPage/Error1","?code={0}");
+app.UseStatusCodePagesWithReExecute("/ErrorPage/Error1", "?code={0}");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseAuthentication();//oturum açýp claimleri kaydetmek için
+
+
+app.UseAuthentication(); //oturum açýp claimleri kaydetmek için
 app.UseRouting();
 
 app.UseAuthorization();
 
 app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Login}/{action=Index}/{id?}");
+    "default",
+    "{controller=Login}/{action=Index}/{id?}");
 
 app.Run();

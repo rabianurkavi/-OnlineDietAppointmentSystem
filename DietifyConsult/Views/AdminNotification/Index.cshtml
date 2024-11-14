@@ -8,50 +8,56 @@
 
 <body>
 
-    <div class="row wrapper border-bottom white-bg page-heading">
-        <div class="col-lg-9">
-            <h2>Duyurular</h2>
-        </div>
-        <div class="col-lg-3">
-            <div class="title-action">
-                <a href="/AdminNotification/NotificationCreate" class="btn btn-primary btn-sm">Duyuru Ekle</a>
-            </div>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-9">
+        <h2>Duyurular</h2>
+    </div>
+    <div class="col-lg-3">
+        <div class="title-action">
+            <a href="/AdminNotification/NotificationCreate" class="btn btn-primary btn-sm">Duyuru Ekle</a>
         </div>
     </div>
-    <div class="row">
+</div>
+<div class="row">
 
-        <div class="col-lg-12">
+    <div class="col-lg-12">
 
-            <div class="wrapper wrapper-content animated fadeInUp">
-                <ul class="notes">
-                    @foreach (var item in Model)
-                    {
-                        <li>
-                            <div>
-                                <small>@item.Admin.AdminFirstName @item.Admin.AdminLastName @item.NotificationDate</small>
-                                <h4>
-                                    @item.NotificationType
-                                </h4>
-                                @if(item.NotificationStatus==true)
-                                {
-
-                                    <p style="font-size: 0.6rem;">@item.NotificationDetails <br> <b>(Açık Bildirim)</b></p>
-                                }
-                                else
-                                {
-                                    <p style="font-size: 0.6rem;">@item.NotificationDetails <br> <b>(Kapalı Bildirim)</b></p>
-                                }
-                                <a href="/AdminNotification/NotificationDelete/@item.NotificationID"><i class="fa fa-trash-o "></i></a>
-                            </div>
-                        </li>
-                    }
-                </ul>
-            </div>
-
+        <div class="wrapper wrapper-content animated fadeInUp">
+            <ul class="notes">
+                @foreach (var item in Model)
+                {
+                    <li>
+                        <div>
+                            <small>@item.Admin.AdminFirstName @item.Admin.AdminLastName @item.NotificationDate</small>
+                            <h4>
+                                @item.NotificationType
+                            </h4>
+                            @if (item.NotificationStatus)
+                            {
+                                <p style="font-size: 0.6rem;">
+                                    @item.NotificationDetails <br> <b>(Açık Bildirim)</b>
+                                </p>
+                            }
+                            else
+                            {
+                                <p style="font-size: 0.6rem;">
+                                    @item.NotificationDetails <br> <b>(Kapalı Bildirim)</b>
+                                </p>
+                            }
+                            <a href="/AdminNotification/NotificationDelete/@item.NotificationID">
+                                <i class="fa fa-trash-o "></i>
+                            </a>
+                        </div>
+                    </li>
+                }
+            </ul>
         </div>
 
     </div>
-    @section scripts{ }
+
+</div>
+
+@section scripts{ }
 
 
 </body>

@@ -1,5 +1,4 @@
-﻿@using Entities.Concrete
-@model List<Consultant>
+﻿@model List<Entities.Concrete.Consultant>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/UserLayout.cshtml";
@@ -35,10 +34,10 @@
 
                                 </ul>
                                 <h5 class="card-title">
-                                    <a href="~/web/single.html">@item.ConsultantName  @item.ConsultantSurName </a>
+                                    <a href="Consultant/ConsultantDetails/@item.ConsultantID">@item.ConsultantName @item.ConsultantSurName </a>
                                 </h5>
                                 <p class="card-text mb-3">@item.Specialization </p>
-                                <a href="~/web/single.html" class="btn btn-primary read-m">Randevu Al</a>
+                                <a href="/IntegrationAppointment/Details/@item.ConsultantID" class="btn btn-primary read-m">Randevu Al</a>
                             </div>
                         </div>
                     }
@@ -48,4 +47,3 @@
         </div>
     </div>
 </section>
-

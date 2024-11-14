@@ -2,23 +2,23 @@
 using DataAccess.Concrete.EntityFramework;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DietifyConsult.ViewComponents.Dashboard
+namespace DietifyConsult.ViewComponents.Dashboard;
+
+public class Statistic5 : ViewComponent
 {
-	public class Statistic5 : ViewComponent
-	{
-		DietifyConsultContext context = new DietifyConsultContext();
-		ConsultantManager consultantManager = new ConsultantManager(new EfConsultantDal());
-		public IViewComponentResult Invoke()
-		{
-			var topConsultantId = context.Blogs
-	                             .GroupBy(b => b.ConsultantID)
-	                             .OrderByDescending(g => g.Count())
-                                 .Select(g => g.Key)
-	                             .FirstOrDefault(); 
-			var values= consultantManager.GetById(topConsultantId);
-			ViewBag.consultantFullName = values.ConsultantName + " " + values.ConsultantSurName;
-			ViewBag.image = values.ConsultantImage;
-			return View();
-		}
-	}
+    private readonly ConsultantManager consultantManager = new(new EfConsultantDal());
+    private readonly DietifyConsultContext context = new();
+
+    public IViewComponentResult Invoke()
+    {
+        var topConsultantId = context.Blogs
+            .GroupBy(b => b.ConsultantID)
+            .OrderByDescending(g => g.Count())
+            .Select(g => g.Key)
+            .FirstOrDefault();
+        var values = consultantManager.GetById(topConsultantId);
+        ViewBag.consultantFullName = values.ConsultantName + " " + values.ConsultantSurName;
+        ViewBag.image = values.ConsultantImage;
+        return View();
+    }
 }

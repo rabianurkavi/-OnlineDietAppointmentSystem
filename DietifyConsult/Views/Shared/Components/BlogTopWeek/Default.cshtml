@@ -1,7 +1,8 @@
-﻿@model Entities.Concrete.Blog
+﻿@using System.Globalization
+@model Entities.Concrete.Blog
 
 <div class="tech-btm">
-	<h4>En yüksek skorlu post</h4>
+    <h4>En yüksek skorlu post</h4>
 
 
     <div class="blog-grids row mb-3">
@@ -14,16 +15,16 @@
 
             <h5>
                 <a href="~/Blog/BlogDetails/@Model.BlogID">@Model.BlogTitle </a>
-                
+
             </h5>
             <div class="sub-meta">
                 <span>
-                    <i class="far fa-clock"></i> @(((DateTime)Model.BlogCreateDate).ToString("dd MMMM yyyy", new System.Globalization.CultureInfo("tr-TR")))
+                    <i class="far fa-clock"></i> @Model.BlogCreateDate.ToString("dd MMMM yyyy", new CultureInfo("tr-TR"))
                 </span>
             </div>
 
         </div>
 
     </div>
-	
+
 </div>

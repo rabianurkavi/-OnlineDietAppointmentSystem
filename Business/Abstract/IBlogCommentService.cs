@@ -1,17 +1,11 @@
 ﻿using Business.Abstract.Generic;
 using Entities.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Business.Abstract
+namespace Business.Abstract;
+
+public interface IBlogCommentService : IGenericService<BlogComment>
 {
-	public interface IBlogCommentService:IGenericService<BlogComment>
-	{
-		List<BlogComment> GetList(int id);
-		List<BlogComment> GetTopTwoBlogs();
-        List<BlogComment> ListWithBlog();
-    }
+    List<BlogComment> GetList(int id);
+    List<BlogComment> GetTopTwoBlogs();
+    List<BlogComment> ListWithBlog();
 }

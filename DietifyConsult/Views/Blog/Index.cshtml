@@ -1,61 +1,54 @@
-﻿@using Entities.Concrete
-@model List<Blog>
+﻿@model List<Entities.Concrete.Blog>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/UserLayout.cshtml";
 }
 
 <section class="main-content-w3layouts-agileits">
-	<div class="container">
-		<div class="card-header">
-			<h3 class="tittle">Bloglar</h3>
-		</div>
-		<div class="inner-sec">
-			<!--left-->
-			<div class="left-blog-info-w3layouts-agileits text-left">
-				<div class="row">
-					@foreach (var item in Model)
-					{
-						@if(item.Status==true)
-						{
-						<div class="col-lg-6 card">
-							<a href="">
-								<img src="~/resim/@item.BlogImage" class="card-img-top img-fluid" style="width: 500px; height: 320px;" alt="">
-							</a>
-							<div class="card-body">
-								<ul class="blog-icons my-4">
-									<li>
-										<a href="#">
-											<i class="far fa-user fa-calendar-alt"></i> @item.Consultant.ConsultantName @item.Consultant.ConsultantSurName
-										</a>
-									</li>
-				
-									
+    <div class="container">
+        <div class="card-header">
+            <h3 class="tittle">Bloglar</h3>
+        </div>
+        <div class="inner-sec">
+            <!--left-->
+            <div class="left-blog-info-w3layouts-agileits text-left">
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        @if (item.Status)
+                        {
+                            <div class="col-lg-6 card">
+                                <a href="~/web/single.html">
+                                    <img src="~/resim/@item.BlogImage" class="card-img-top img-fluid" style="width: 500px; height: 320px;" alt="">
+                                </a>
+                                <div class="card-body">
+                                    <ul class="blog-icons my-4">
+                                        <li>
+                                            <a href="#">
+                                                <i class="far fa-user fa-calendar-alt"></i> @item.Consultant.ConsultantName @item.Consultant.ConsultantSurName
+                                            </a>
+                                        </li>
 
-								</ul>
-								<h5 class="card-title">
-									<a href="~/web/single.html">@item.BlogTitle </a>
-								</h5>
-								<p class="card-text mb-3">
-									@(item.BlogDescription.Length > 150 ? item.BlogDescription.Substring
-										(0, item.BlogDescription.Substring(0, 155).LastIndexOf(" ")) + "..."
-										: item.BlogDescription + "...")
-								</p>
-								<a href="~/Blog/BlogDetails/@item.BlogID" class="btn btn-primary read-m">Devamını Oku</a>
 
-							</div>
-							</div>
-						}
-						else
-						{
-							
-						}
-					}
-				</div>
-				<!--//left-->
-			</div>
-		</div>
-	</div>
+                                    </ul>
+                                    <h5 class="card-title">
+                                        <a href="~/web/single.html">@item.BlogTitle </a>
+                                    </h5>
+                                    <p class="card-text mb-3">
+                                        @(item.BlogDescription.Length > 150
+                                            ? item.BlogDescription.Substring
+                                                (0, item.BlogDescription.Substring(0, 155).LastIndexOf(" ")) + "..."
+                                            : item.BlogDescription + "...")
+                                    </p>
+                                    <a href="~/Blog/BlogDetails/@item.BlogID" class="btn btn-primary read-m">Devamını Oku</a>
+
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+                <!--//left-->
+            </div>
+        </div>
+    </div>
 </section>
-
-

@@ -1,14 +1,8 @@
 ﻿using DataAccess.Abstract.Repositories;
 using Entities.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DataAccess.Abstract
+namespace DataAccess.Abstract;
+
+public interface IEducationDal : IGenericDal<Education>
 {
-    public interface IEducationDal:IGenericDal<Education>
-    {
-    }
 }

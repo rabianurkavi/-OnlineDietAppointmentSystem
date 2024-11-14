@@ -8,63 +8,63 @@
 <html>
 
 <body>
-            <div class="row wrapper border-bottom white-bg page-heading">
-                <div class="col-lg-9">
-                    <h2>Danışanlar</h2>
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <a href="/Admin/Dashboard/">Ana Sayfa</a>
-                        </li>
-                        <li class="breadcrumb-item active">
-                            <strong>Danışanlar</strong>
-                        </li>
-                    </ol>
-                </div>
-            </div>
-            
-            <div class="wrapper wrapper-content animated fadeInRight">
-                
-                <div class="row">
-                    @foreach(var item in Model)
-                {
-                    @if(item.DietitianStatus==false && item.AdminStatus==false)
-                    {
-                    <div class="col-lg-3">
-                        <div class="contact-box center-version">
-
-                            <a href="profile.html">
-
-                                <img alt="image" class="rounded-circle" src="~/resim/@item.ClientImage">
-
-
-                                <h3 class="m-b-xs"><strong>@item.ClientName @item.ClientSurName</strong></h3>
-
-                                <div class="font-bold">@item.ClientEmail</div>
-                                <address class="m-t-md">
-                                    <strong>@item.CreateDate</strong><br>
-                                    <abbr title="Phone">Telefon:</abbr> @item.PhoneNumber
-                                </address>
-
-                            </a>
-                            <div class="contact-box-footer">
-                                <div class="m-t-xs btn-group">
-                                    <a href="" class="btn btn-xs btn-white"><i class="fa fa-envelope"></i> Mesaj Yolla</a>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                }
-                     }
-                </div>
-        @section scripts{ }
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-9">
+        <h2>Danışanlar</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/Admin/Dashboard/">Ana Sayfa</a>
+            </li>
+            <li class="breadcrumb-item active">
+                <strong>Danışanlar</strong>
+            </li>
+        </ol>
     </div>
-        
+</div>
 
-      
+<div class="wrapper wrapper-content animated fadeInRight">
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            @if (item.DietitianStatus == false && item.AdminStatus == false)
+            {
+                <div class="col-lg-3">
+                    <div class="contact-box center-version">
+
+                        <a href="profile.html">
+
+                            <img alt="image" class="rounded-circle" src="~/resim/@item.ClientImage">
+
+
+                            <h3 class="m-b-xs">
+                                <strong>@item.ClientName @item.ClientSurName</strong>
+                            </h3>
+
+                            <div class="font-bold">@item.ClientEmail</div>
+                            <address class="m-t-md">
+                                <strong>@item.CreateDate</strong><br>
+                                <abbr title="Phone">Telefon:</abbr> @item.PhoneNumber
+                            </address>
+
+                        </a>
+                        <div class="contact-box-footer">
+                            <div class="m-t-xs btn-group">
+                                <a href="" class="btn btn-xs btn-white"><i class="fa fa-envelope"></i> Mesaj Yolla</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            }
+        }
+    </div>
+
+    @section scripts{ }
+
+</div>
 
 
 </body>
 
 </html>
-

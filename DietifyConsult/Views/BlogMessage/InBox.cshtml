@@ -1,7 +1,5 @@
-﻿@using Entities.Concrete
-@using X.PagedList;
-@using X.PagedList.Mvc.Core;
-@model IPagedList<Message>
+﻿@using X.PagedList.Mvc.Core
+@model X.PagedList.IPagedList<Entities.Concrete.Message>
 @{
     ViewData["Title"] = "InBox";
     Layout = "~/Views/Shared/UserLayout.cshtml";
@@ -139,37 +137,37 @@
 </head>
 <body>
 
-    <div class="inbox-container">
-        @if (!Model.Any())
-        {
-            <div class="empty-inbox-message">
-                Gelen kutunuz boş.
-            </div>
-        }
-        else
-        {
-            @foreach (var item in Model)
-            {
-                <div class="message">
-                    <img src="~/resim/@item.SenderUser.ClientImage" alt="Sender Avatar" class="sender-avatar">
-                    <div class="message-details">
-                        <h2>@item.Subject</h2>
-                        <p>Gönderen: @item.SenderUser.ClientName @item.SenderUser.ClientSurName</p>
-                        <p>Gönderilme Tarihi: @item.MessageDate.ToString("dd/MM/yyyy HH:mm")</p>
-                    </div>
-                    <a href="/BlogMessage/MessageDetails/@item.MessageID" class="read-button">Mesajı Oku</a>
-                </div>
-            }
-        }
-    </div>
-    <!-- Pagination -->
-    @if (Model.Any())
+<div class="inbox-container">
+    @if (!Model.Any())
     {
-        <div class="pagination">
-            @Html.PagedListPager(Model, page => Url.Action("InBox", new { page }), new PagedListRenderOptions { LiElementClasses = new[] { "page-item" }, PageClasses = new[] { "pagination-button" }, LinkToPreviousPageFormat = "<", LinkToNextPageFormat = ">" })
+        <div class="empty-inbox-message">
+            Gelen kutunuz boş.
         </div>
     }
-    <a href="/BlogMessage/NewMessage" class="send-message-button">Yeni Mesaj Oluştur</a>
+    else
+    {
+        @foreach (var item in Model)
+        {
+            <div class="message">
+                <img src="~/resim/@item.SenderUser.ClientImage" alt="Sender Avatar" class="sender-avatar">
+                <div class="message-details">
+                    <h2>@item.Subject</h2>
+                    <p>Gönderen: @item.SenderUser.ClientName @item.SenderUser.ClientSurName</p>
+                    <p>Gönderilme Tarihi: @item.MessageDate.ToString("dd/MM/yyyy HH:mm")</p>
+                </div>
+                <a href="/BlogMessage/MessageDetails/@item.MessageID" class="read-button">Mesajı Oku</a>
+            </div>
+        }
+    }
+</div>
+<!-- Pagination -->
+@if (Model.Any())
+{
+    <div class="pagination">
+        @Html.PagedListPager(Model, page => Url.Action("InBox", new { page }), new PagedListRenderOptions { LiElementClasses = new[] { "page-item" }, PageClasses = new[] { "pagination-button" }, LinkToPreviousPageFormat = "<", LinkToNextPageFormat = ">" })
+    </div>
+}
+<a href="/BlogMessage/NewMessage" class="send-message-button">Yeni Mesaj Oluştur</a>
 
 </body>
 </html>

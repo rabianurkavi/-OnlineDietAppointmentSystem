@@ -1,0 +1,103 @@
+﻿@model DietifyConsult.Models.DietitianDetailsViewModel
+
+<div class="container">
+ <div class="modal-content">
+        <div class="modal-header">
+            <h3>Uygun Saatler</h3>
+
+            <div class="form-container">
+              
+                @if (Model.AvailableTimesByDay.Any())
+                {
+                    <form method="post" action="/Test/PartialDetails">
+                        <input type="hidden" name="id" value="@Model.Consultant.ConsultantID" />
+                        <label for="selectedDate">Tarih Seç:</label>
+                        <input type="date" name="selectedDate" id="selectedDate" min="@DateTime.Now.ToString("yyyy-MM-dd")" value="@Model.SelectedDate?.ToString("yyyy-MM-dd")" onchange="this.form.submit()">
+                    </form>
+                }
+                else
+                {
+                    <p>Seçili tarih için uygun saat bulunamadı.</p>
+                }
+            </div>
+
+            @if (Model.SelectedDate.HasValue)
+            {
+                <div class="modal-body">
+                    <h4 class="modal-title">@Model.SelectedDate.Value.ToString("dd/MM/yyyy")</h4>
+                    <ul class="time-list">
+                        @foreach (var time in Model.AvailableTimesByDay[Model.SelectedDate.Value].Where(t => t != new TimeSpan(13, 0, 0)))
+                        {
+                            <li>
+                                <input type="radio" name="time" id="@Model.SelectedDate.Value.ToString("yyyy-MM-dd")-@(time.ToString())" value="@time" required>
+                                <label for="@Model.SelectedDate.Value.ToString("yyyy-MM-dd")-@(time.ToString())">@time</label>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            }
+            <div class="modal-footer">
+               <div class="button-container">
+                 <button type="submit">Devam Et</button>
+               </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Modal içeriği stilleri */
+    .modal-content {
+        background-color: #fefefe; /* Modal arka plan rengi */
+        margin: 15% auto; /* Dikey ve yatay ortala */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 600px; /* Modalın maksimum genişliği */
+        border-radius: 5px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .container {
+        text-align: center;
+    }
+
+    .form-container label {
+        margin-right: 10px;
+    }
+
+    .button-container button {
+        padding: 8px 16px; /* Buton boyutları azaltıldı */
+        font-size: 14px; /* Buton metin boyutu ayarlandı */
+        background-color: #01cd74; /* Buton rengi güncellendi */
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .button-container button:hover {
+            background-color: #008d4c; /* Buton hover rengi güncellendi */
+        }
+
+    .modal-body {
+        text-align: center; /* Saat listesi ortalandı */
+        margin-bottom: 10px; /* Alt boşluk azaltıldı */
+        font-size: 14px; /* Yazı boyutu küçültüldü */
+    }
+
+        .modal-body h4 {
+            font-size: 16px; /* Başlık boyutu küçültüldü */
+            margin-bottom: 5px; /* Alt boşluk azaltıldı */
+        }
+
+    .time-list {
+        list-style: none; /* Liste işaretleri kaldırıldı */
+        padding: 0; /* Liste içi boşluklar kaldırıldı */
+    }
+
+        .time-list li {
+            margin-bottom: 5px; /* Liste öğeleri arası boşluk eklendi */
+        }
+</style>

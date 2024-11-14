@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Entities.Concrete
+namespace Entities.Concrete;
+
+public class NewsLetter
 {
-    public class NewsLetter
-    {
-        [Key]
-        public int MailId { get; set; }
-        public string NewsLetterMail { get; set; }
-        public bool MailStatus { get; set; }
-    }
+    [Key] public int MailId { get; set; }
+
+    public string NewsLetterMail { get; set; }
+    public bool MailStatus { get; set; }
 }

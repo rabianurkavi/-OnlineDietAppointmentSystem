@@ -7,52 +7,56 @@
 <html>
 <body>
 
-            <div class="row wrapper border-bottom white-bg page-heading">
-                <div class="col-lg-9">
-                    <h2>Admin Sayfası</h2>
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <a href="/Admin/Dashboard/">Ana Sayfa</a>
-                        </li>
-                        <li class="breadcrumb-item active">
-                            <strong>Adminler</strong>
-                        </li>
-                    </ol>
-                </div>
-            </div>
-            <div class="wrapper wrapper-content animated fadeInRight">
-                <div class="row">
-                    @foreach(var item in Model)
-                    {
-                    <div class="col-lg-6">
-                    <a class="btn btn-warning" style="color:black"><i class="fa fa-user"></i> Rol Atama</a>
-                        <div class="contact-box">
-                            <a class="row" href="profile.html">
-                                <div class="col-4">
-                                    <div class="text-center">
-                                        <img style="width:138px; height:150px" alt="image" class="rounded-circle m-t-xs img-fluid" src="~/resim/@item.Client.ClientImage">
-                                        <div class="m-t-xs font-bold">@item.Role.RoleName</div>
-                                    </div>
-                                </div>
-                                <div class="col-8">
-                                    <h3><strong>@item.AdminFirstName @item.AdminLastName</strong></h3>
-                                    <p><i class="fa fa-envelope"></i> @item.AdminEmail</p>
-                                    <address>
-                                       Hesap Oluşturma Tarihi: @item.CreateDateTime<br>
-                                        <abbr title="Phone">Telefon: </abbr> <b>@item.AdminPhoneNumber</b>
-                                    </address>
-                                </div>
-                            </a>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-9">
+        <h2>Admin Sayfası</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/Admin/Dashboard/">Ana Sayfa</a>
+            </li>
+            <li class="breadcrumb-item active">
+                <strong>Adminler</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-6">
+                <a class="btn btn-warning" style="color:black"><i class="fa fa-user"></i> Rol Atama</a>
+                <div class="contact-box">
+                    <a class="row" href="profile.html">
+                        <div class="col-4">
+                            <div class="text-center">
+                                <img style="width:138px; height:150px" alt="image" class="rounded-circle m-t-xs img-fluid" src="~/resim/@item.Client.ClientImage">
+                                <div class="m-t-xs font-bold">@item.Role.RoleName</div>
+                            </div>
                         </div>
-                    </div>
-                    }
+                        <div class="col-8">
+                            <h3>
+                                <strong>@item.AdminFirstName @item.AdminLastName</strong>
+                            </h3>
+                            <p>
+                                <i class="fa fa-envelope"></i> @item.AdminEmail
+                            </p>
+                            <address>
+                                Hesap Oluşturma Tarihi: @item.CreateDateTime<br>
+                                <abbr title="Phone">Telefon: </abbr> <b>@item.AdminPhoneNumber</b>
+                            </address>
+                        </div>
+                    </a>
                 </div>
             </div>
-    @section scripts{
+        }
+    </div>
+</div>
 
-    }
+@section scripts{
+
+}
+
 </body>
 
 </html>
-
-

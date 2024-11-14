@@ -9,7 +9,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Yazar Profil Bilgileri Düzenleme</h4>
-                <br />
+                <br/>
                 @using (Html.BeginForm("TestConsultantProfile", "Consultant", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
                     <style>
@@ -61,60 +61,62 @@
 
                     </style>
 
-                    <br />
+                    <br/>
                     @Html.Label("Profil Fotoğrafı")
-                    <br />
-                    <br />
+                    <br/>
+                    <br/>
 
-                  
-                        <img src="~/resim/@Model.ConsultantImage" alt="Blog Görseli" class="img-fluid" style="max-width: 400px; max-height: 300px;" />
-                    <br />
+
+                    <img src="~/resim/@Model.ConsultantImage" alt="Blog Görseli" class="img-fluid" style="max-width: 400px; max-height: 300px;"/>
+                    <br/>
                     <span class="fa fa-star">@Model.RatingScore</span>
                     <small style="color: orange;">(Değerlendirme)</small>
-                    <br />
-                    <br />
-                    @Html.HiddenFor(x => x.ConsultantImage) <!-- Mevcut görsel yolunu korumak için gizli alan -->
-                    @Html.TextBox("ConsultantImage", null, new { @class = "form-control", type = "file" }) <!-- Dosya yükleme girişi -->
+                    <br/>
+                    <br/>
+                    @Html.HiddenFor(x => x.ConsultantImage)
+                    <!-- Mevcut görsel yolunu korumak için gizli alan -->
+                    @Html.TextBox("ConsultantImage", null, new { @class = "form-control", type = "file" })
+                    <!-- Dosya yükleme girişi -->
                     @Html.ValidationMessageFor(x => x.ConsultantImage)
 
-                    <br />
-                    
+                    <br/>
+
                     @Html.ValidationMessageFor(x => x.ConsultantImage, "", new { @class = "validation-message" })
-                    <br />
+                    <br/>
                     @Html.Label("İsim")
                     @Html.TextBoxFor(x => x.ConsultantName, new { @class = "form-control" })
                     @Html.ValidationMessageFor(x => x.ConsultantName, "", new { @class = "validation-message" })
-                    <br />
+                    <br/>
                     @Html.Label("Soy İsim")
                     @Html.TextBoxFor(x => x.ConsultantSurName, new { @class = "form-control" })
                     @Html.ValidationMessageFor(x => x.ConsultantSurName, "", new { @class = "validation-message" })
-                    <br />
+                    <br/>
                     @Html.Label("Uzmanlık Alanı")
                     @Html.TextBoxFor(x => x.Specialization, new { @class = "form-control" })
                     @Html.ValidationMessageFor(x => x.Specialization, "", new { @class = "validation-message" })
-                    <br />
+                    <br/>
                     @Html.Label("Telefon Numarası")
                     @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control" })
                     @Html.ValidationMessageFor(x => x.PhoneNumber, "", new { @class = "validation-message" })
-                    <br />
+                    <br/>
                     @Html.Label("Email")
                     @Html.TextBoxFor(x => x.ConsultantEmail, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(x => x.ConsultantEmail, "", new { @class = "validation-message", type="email" })
-                    <br />
+                    @Html.ValidationMessageFor(x => x.ConsultantEmail, "", new { @class = "validation-message", type = "email" })
+                    <br/>
                     @Html.Label("Yaşadığı Şehir")
                     @Html.TextBoxFor(x => x.ConsultantAddress, new { @class = "form-control" })
                     @Html.ValidationMessageFor(x => x.ConsultantAddress, "", new { @class = "validation-message" })
-                    <br />
+                    <br/>
                     @Html.Label("Seans Ücreti")
                     @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
                     @Html.ValidationMessageFor(x => x.Price, "", new { @class = "validation-message" })
-                    <br />
+                    <br/>
                     @Html.Label("Şifre")
                     @Html.TextBoxFor(x => x.ConsultantPassword, new { @class = "form-control" })
                     @Html.ValidationMessageFor(x => x.ConsultantPassword, "", new { @class = "validation-message" })
-                    <br />
-                    <br />
-                    <br />
+                    <br/>
+                    <br/>
+                    <br/>
                     @Html.HiddenFor(x => x.ConsultantID)
                     @Html.HiddenFor(x => x.ClientID)
                     @Html.HiddenFor(x => x.ConsultantImage)
@@ -128,4 +130,3 @@
         </div>
     </div>
 </form>
-

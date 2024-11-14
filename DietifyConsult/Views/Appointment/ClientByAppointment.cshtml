@@ -1,0 +1,132 @@
+﻿@model List<Entities.Concrete.Appointment>
+@{
+    ViewData["Title"] = "ClientByAppointment";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<div class="container-fluid my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="table-responsive">
+                <h2 class="text-center mb-4">Randevularım</h2>
+                <div style="overflow-x: auto;">
+                    <table id="datatable" class="table table-striped table-bordered">
+                        <thead class="table-header" style="background-color: #fff; color: #000;">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">İsim</th>
+                                <th scope="col">Soyisim</th>
+                                <th scope="col">E-posta</th>
+                                <th scope="col">Link</th>
+                                <th scope="col">Toplantı ID</th>
+                                <th scope="col">Şifre</th>
+                                <th scope="col">Tarih</th>
+                                <th scope="col">Durum</th>
+                                <th scope="col">Randevu Durumu</th>
+                                <th scope="col">Ödeme İşlemi</th>
+                                <th scope="col">İptal Et</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr style="@(Model.IndexOf(item) % 2 == 0 ? "background-color: #fafafa;" : "")">
+                                    <td>
+                                        <img style="width: 80px; height: 100px" src="~/resim/@item.Consultant.ConsultantImage" alt="Danışan Resmi" class="client-image" />
+                                    </td>
+                                    <td style="color: black;">@item.Consultant.ConsultantName</td>
+                                    <td style="color: black;">@item.Consultant.ConsultantSurName</td>
+                                    <td style="color: black;">@item.Consultant.ConsultantEmail</td>
+                                    <td>
+                                        <a href="@item.Link" target="_blank">Görüşmeye Katıl</a>
+                                    </td>
+                                    <td style="color: black;">@item.JoinID</td>
+                                    <td style="color: black;">@item.Password</td>
+                                    <td style="text-align: center; color: black;">@item.AppointmentDateTime.ToString("dd MMMM yyyy HH:mm", new System.Globalization.CultureInfo("tr-TR"))</td>
+                                    <td>
+                                        @if (item.AppointmentStatus == "Bekleniyor" || item.AppointmentStatus == "Onaylandı")
+                                        {
+                                            <span style="color:green" class="text-success">Aktif</span>
+                                        }
+                                        else
+                                        {
+                                            <span style="color:red" class="text-danger">Aktif Değil</span>
+                                        }
+                                    </td>
+                                    @if (item.AppointmentStatus == "Bekleniyor")
+                                    {
+                                        <td style="color: darkorange;">@item.AppointmentStatus</td>
+                                    }
+                                    else if (item.AppointmentStatus == "Tamamlandı")
+                                    {
+                                        <td style="color: blue;">@item.AppointmentStatus</td>
+                                    }
+                                    else if (item.AppointmentStatus == "İptal")
+                                    {
+                                        <td style="color: red;">@item.AppointmentStatus</td>
+                                    }
+                                    else if (item.AppointmentStatus == "Onaylandı")
+                                    {
+                                        <td style="color: green;">@item.AppointmentStatus</td>
+                                    }
+                                    else if (item.AppointmentStatus != "Bekleniyor" && item.AppointmentStatus != "Tamamlandı" && item.AppointmentStatus != "İptal" && item.AppointmentStatus != "Onaylandı")
+                                    {
+                                        <td style="color: black;">@item.AppointmentStatus</td>
+                                    }
+                                    @if (item.AppointmentStatus == "Onaylandı" && item.PaymentStatus==false)
+                                    {
+                                        <td>
+                                            <a href="/PaymentTest/CreateCheckoutSession/@item.AppointmentID" class="btn btn-info">Ödeme Yap</a>
+                                        </td>
+                                    }
+                                    else if (item.AppointmentStatus == "Onaylandı" && item.PaymentStatus == true)
+                                    {
+                                        <td style="color:green">Ödeme Yapıldı</td>
+                                    }
+                                    else if (item.AppointmentStatus != "Onaylandı")
+                                    {
+                                        <td></td>
+                                    }
+                                   
+                                        @if (item.AppointmentStatus == "Bekleniyor" || item.AppointmentStatus == "Onaylandı")
+                                        {
+                                        <td>
+                                            <a href="/Appointment/AppointmentDelete/@item.AppointmentID" onclick="return confirm('İptal etmek istediğinize emin misiniz?');" class="btn btn-danger">İptal Et</a>
+                                        </td>
+                                        }
+                                        else
+                                        {
+                                        <td></td>
+                                        }
+                                    
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    table {
+        table-layout: fixed;
+        width: 100%;
+    }
+
+    th, td {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .btn {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        white-space: nowrap;
+    }
+</style>

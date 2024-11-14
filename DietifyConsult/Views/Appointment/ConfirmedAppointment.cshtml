@@ -1,0 +1,156 @@
+﻿@model List<Entities.Concrete.Appointment>
+@{
+    ViewData["Title"] = "ConfirmedAppointment";
+    Layout = "~/Views/Shared/_ConsultantLayout.cshtml";
+}
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.7/css/dataTables.dataTables.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/datetime/1.5.2/css/dataTables.dateTime.min.css">
+
+<script src="https://cdn.datatables.net/datetime/1.5.2/js/dataTables.dateTime.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+
+
+<script src="//cdn.datatables.net/plug-ins/1.10.7/i18n/Turkish.json"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var table = $('#datatable').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.7/i18n/Turkish.json"
+            }
+        });
+
+        // Create date inputs
+        const minDate = new DateTime('#min', {
+            format: 'DD/MM/YYYY'
+        });
+        const maxDate = new DateTime('#max', {
+            format: 'DD/MM/YYYY'
+        });
+
+        $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
+            const min = minDate.val() ? moment(minDate.val(), 'DD/MM/YYYY') : null;
+            const max = maxDate.val() ? moment(maxDate.val(), 'DD/MM/YYYY') : null;
+            const date = moment(data[6], 'DD/MM/YYYY');
+
+            if (
+                (min === null && max === null) ||
+                (min === null && date.isSameOrBefore(max)) ||
+                (min.isSameOrBefore(date) && max === null) ||
+                (min.isSameOrBefore(date) && date.isSameOrBefore(max))
+            ) {
+                return true;
+            }
+            return false;
+        });
+
+        $("#filter_date").click(function () {
+            if ($("#min").val() !== "" || $("#max").val() !== "") {
+                table.draw();
+            }
+        });
+
+        $("#reset_filter_date").click(function () {
+            // Clear the input values
+            $("#min, #max").val("");
+
+            // Reset date inputs
+            minDate.val(null);
+            maxDate.val(null);
+
+            // Redraw table
+            table.draw();
+        });
+    });
+</script>
+<table class="table table-bordered">
+    <tbody>
+        <tr>
+            <td>Başlangıç Tarihi:</td>
+            <td>
+                <input type="text" id="min" name="min" class="form-control" style="width: 300px; height: 30px;">
+            </td>
+        </tr>
+        <tr>
+            <td>Bitiş Tarihi:</td>
+            <td>
+                <input type="text" id="max" name="max" class="form-control" style="width: 300px; height: 30px;">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="button" class="btn btn-success" id="filter_date" style="font-size: 14px; padding: 10px 20px;">
+                    Filtrele
+                </button>
+                <button type="button" class="btn btn-warning" id="reset_filter_date" style="font-size: 14px; padding: 10px 20px;">
+                    Temizle
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div style="overflow-x: auto;">
+
+    <table id="datatable" class="table table-striped table-bordered">
+        <thead class="table-header">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Danışan İsim</th>
+                <th scope="col">Danışan Soy İsim</th>
+                <th scope="col">Boyu</th>
+                <th scope="col">Kilo</th>
+                <th scope="col">Link</th>
+                <th scope="col">Toplantı ID</th>
+                <th scope="col">Şifre</th>
+                <th scope="col">Görüşme Tarihi</th>
+                <th scope="col">Telefon Numarası</th>
+                <th scope="col">Randevu Durumu</th>
+                <th scope="col">Ödeme Durumu</th>
+                <th scope="col">İptal Et</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                @if (item.AppointmentStatus == "Onaylandı" )
+                {
+                    <tr>
+                        <td>
+                            <img src="~/resim/@item.Client.ClientImage" alt="Danışan Resmi" class="client-image" />
+                        </td>
+                        <td>@item.Client.ClientName</td>
+                        <td>@item.Client.ClientSurName</td>
+                        <td>@item.Client.ClientHeight</td>
+                        <td>@item.Client.ClientWeight</td>
+                        <td>
+                            <a href="@item.Link" target="_blank">Görüşmeye Katıl</a>
+                        </td>
+                        <td>@item.JoinID</td>
+                        <td>@item.Password</td>
+                        <td style="text-align: center;">@item.AppointmentDateTime</td>
+                        <td>@item.Client.PhoneNumber</td>
+                        <td style="color:darkorange">@item.AppointmentStatus</td>
+                        @if(item.PaymentStatus==false)
+                        {
+                            <td style="color:red">Ödeme Yapılmadı</td>
+
+                        }
+                        else
+                        {
+                            <td style="color:green">Ödeme Yapıldı</td>
+
+                        }
+                        <td>
+                            <a href="/Appointment/AppointmentDelete/@item.AppointmentID" onclick="return confirm('İptal etmek istediğinize emin misiniz?');" class="btn btn-inverse-danger">İptal Et</a>
+                        </td>
+
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+

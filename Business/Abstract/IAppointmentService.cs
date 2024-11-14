@@ -1,17 +1,13 @@
 ﻿using Business.Abstract.Generic;
 using Entities.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Business.Abstract
+namespace Business.Abstract;
+
+public interface IAppointmentService : IGenericService<Appointment>
 {
-    public interface IAppointmentService : IGenericService<Appointment>
-    {
-        List<Appointment> GetClientByAppointment(int id);
-        List<Appointment> ClientAndConsultantByAppointment();
+    List<Appointment> GetClientByAppointment(int id);
+    List<Appointment> ClientAndConsultantByAppointment();
+    List<Appointment> ClientAppointmentList(int clientID);
+    Appointment GetAppointmentById(int appointmentID);
 
-    }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vg2EJcvkyjbXVJbVIhrF05dw5sUcW6QVQ4X/WfyU9Jh5LOcdazMLSowt8JXq6xgCsyezsaZbRa8vzmLvv/yGDA==",
+  "dgSpecHash": "YNXob2HZonc=",
   "success": true,
-  "projectFilePath": "C:\\Users\\kavir\\source\\repos\\DietifyConsult\\Entities\\Entities.csproj",
+  "projectFilePath": "C:\\Users\\kavir\\OneDrive\\Masaüstü\\DietifyConsult\\DietifyConsult\\Entities\\Entities.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kavir\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\kavir\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",

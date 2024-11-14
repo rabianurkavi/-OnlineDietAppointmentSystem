@@ -2,15 +2,15 @@
 using DataAccess.Concrete.EntityFramework;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DietifyConsult.Controllers
+namespace DietifyConsult.Controllers;
+
+public class AdminClientController : Controller
 {
-    public class AdminClientController : Controller
+    private readonly ClientManager clientManager = new(new EfClientDal());
+
+    public IActionResult Index()
     {
-        ClientManager clientManager = new ClientManager(new EfClientDal());
-        public IActionResult Index()
-        {
-            var values=clientManager.GetAll();
-            return View(values);
-        }
+        var values = clientManager.GetAll();
+        return View(values);
     }
 }

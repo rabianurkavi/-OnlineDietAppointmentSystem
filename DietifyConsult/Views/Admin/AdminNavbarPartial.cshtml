@@ -8,22 +8,41 @@
                 </div>
             </li>
             <li>
-                <a href="/Admin/Dashboard/"><i class="fa fa-th-large"></i> <span class="nav-label">Panel</span>  </a>
+                <a href="/Admin/Dashboard/">
+                    <i class="fa fa-th-large"></i> <span class="nav-label">Panel</span>
+                </a>
             </li>
             <li>
-                <a href="mailbox.html">
+                <a href="">
                     <i class="fa fa-envelope"></i> <span class="nav-label">Mesajlar </span>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="/AdminMessage/InBox/">Gelen Kutusu</a></li>
-                        <li><a href="/AdminMessage/SendBox">Giden Kutusu</a></li>
-                        <li><a href="/AdminMessage/NewMessage">Yeni Mesaj Oluştur</a></li>
+                        <li>
+                            <a href="/AdminMessage/InBox/"> <i class="fa fa-inbox"></i> <span class="nav-label">Gelen Kutusu</span></a>
+
+                        </li>
+                        <li>
+                            <a href="/AdminMessage/SendBox/"> <i class="fa fa-envelope-o" aria-hidden="true"></i> <span class="nav-label">Giden Kutusu</span></a>
+
+                        </li>
+                        <li>
+                            <a href="/AdminMessage/NewMessage/"> <i class="fa fa-envelope-open-o" aria-hidden="true"></i> <span class="nav-label">Yeni Mesaj Oluştur</span></a>
+
+                        </li>
                     </ul>
             </li>
             <li>
-                <a href="/AdminBlog/Index/"><i class="fa fa-comment"></i> <span class="nav-label">Yorumlar</span>  </a>
+                <a href="/AdminBlog/Index/">
+                    <i class="fa fa-comment"></i> <span class="nav-label">Yorumlar</span>
+                </a>
                 <ul class="nav nav-second-level collapse">
-                    <li><a href="/AdminComment/BlogComment/">Blog Yorumları</a></li>
-                    <li><a href="/AdminComment/ConsultantComment/">Diyetisyen Yorumları</a></li>
+                    <li>
+                        <a href="/AdminComment/BlogComment/"> <i class="fa fa-commenting-o" aria-hidden="true"></i> <span class="nav-label">Blog Yorumları</span></a>
+
+                    </li>
+                    <li>
+                        <a href="/AdminComment/ConsultantComment/"> <i class="fa fa-comment-o" aria-hidden="true"></i> <span class="nav-label">Diyetisyen Yorumları</span></a>
+
+                    </li>
                 </ul>
             </li>
             <li>
@@ -33,33 +52,70 @@
                 </a>
             </li>
             <li>
-                <a href="/AdminAppointment/Index/"><i class="fa fa-calendar"></i> <span class="nav-label">Randevular</span>  </a>
+                <a href="">
+                    <i class="fa fa-calendar"></i> <span class="nav-label">Randevular </span>
+                    <ul class="nav nav-second-level collapse">
+                        <li>
+                            <a href="/AdminAppointment/Index/"> <i class="fa fa-calendar" aria-hidden="true"></i> <span class="nav-label">Tüm Randevular</span></a>
+                        </li>
+                        <li>
+                            <a href="/AdminAppointment/ConfirmedAppointment/"> <i class="fa fa-calendar-check-o"></i> <span class="nav-label">Onaylanan Randevular</span></a>
+                        </li>
+                        <li>
+                            <a href="/AdminAppointment/PendingAppointment/"> <i class="fa fa-calendar-o"></i> <span class="nav-label">Bekleyen Randevular</span></a>
+                        </li>
+                        <li>
+                            <a href="/AdminAppointment/CompletedAppointment/"> <i class="fa fa-calendar-plus-o"></i> <span class="nav-label">Tamamlanan Randevular</span></a>
+                        </li>
+                        <li>
+                            <a href="/AdminAppointment/CancelAppointment/"> <i class="fa fa-calendar-times-o"></i> <span class="nav-label">İptal Edilen Randevular</span></a>
+                        </li>
+                        <li>
+                            <a href="/AdminAppointment/PaymentCompletedAppointment/"> <i class="fa fa-check-circle-o" aria-hidden="true"></i> <span class="nav-label">Ödemesi Yapılan Randevular</span></a>
+                        </li>
+                        <li>
+                            <a href="/AdminAppointment/DidntPaymentAppointment/"> <i class="fa fa-times-circle-o" aria-hidden="true"></i> <span class="nav-label">Ödemesi Yapılmayan Randevular</span></a>
+                        </li>
+                    </ul>
             </li>
             <li>
-                <a href="/AdminConsultant/Index/"><i class="fa fa-user-md"></i> <span class="nav-label">Diyetisyenler</span>  </a>
-                <a href="/AdminClient/Index/"><i class="fa fa-user"></i> <span class="nav-label">Kullanıcılar</span>  </a>
+                <a href="/AdminConsultant/Index/">
+                    <i class="fa fa-user-md"></i> <span class="nav-label">Diyetisyenler</span>
+                </a>
+                <a href="/AdminClient/Index/">
+                    <i class="fa fa-user"></i> <span class="nav-label">Kullanıcılar</span>
+                </a>
             </li>
             <li>
-                <a href="/Admin/Index/"><i class="fa fa-user-secret"></i> <span class="nav-label">Admin Listesi</span>  </a>
+                <a href="/Admin/Index/">
+                    <i class="fa fa-user-secret"></i> <span class="nav-label">Admin Listesi</span>
+                </a>
             </li>
             <li>
             <li>
-                <a href="/AdminNotification/Index/"><i class="fa fa-bell"></i> <span class="nav-label">Duyurular</span>  </a>
+                <a href="/AdminNotification/Index/">
+                    <i class="fa fa-bell"></i> <span class="nav-label">Duyurular</span>
+                </a>
             </li>
             <li>
-                <a href="/AdminContact/Index/"><i class="fa fa-phone"></i> <span class="nav-label">İletişim</span>  </a>
+                <a href="/AdminContact/Index/">
+                    <i class="fa fa-phone"></i> <span class="nav-label">İletişim</span>
+                </a>
             </li>
             <li>
-                <a href="/AdminAbout/Index/"><i class="fa fa-pencil-square"></i> <span class="nav-label">Hakkımızda</span>  </a>
+                <a href="/AdminAbout/Index/">
+                    <i class="fa fa-pencil-square"></i> <span class="nav-label">Hakkımızda</span>
+                </a>
             </li>
             <li>
-                <a href="~/Blog/Index/"><i class="fa fa-pencil"></i> <span class="nav-label">Siteye Git</span></a>
+                <a href="~/Blog/Index/">
+                    <i class="fa fa-pencil"></i> <span class="nav-label">Siteye Git</span>
+                </a>
             </li>
             <li>
-                <a href="/Admin/Writer/WriterProfileList/"><i class="fa fa-gear"></i> <span class="nav-label">Ayarlar</span>  </a>
-            </li>
-            <li>
-                <a href="/Login/LogOut"><i class="fa fa-apple"></i> <span class="nav-label">Çıkış Yap</span></a>
+                <a href="/Login/LogOut">
+                    <i class="fa fa-apple"></i> <span class="nav-label">Çıkış Yap</span>
+                </a>
             </li>
 
         </ul>

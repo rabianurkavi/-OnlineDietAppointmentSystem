@@ -5,8 +5,8 @@
 }
 <div class="container">
     <div class="contact_grid_right">
-       
-            <style>
+
+        <style>
                 body {
                     background-color: white /* Light gray background */
                 }
@@ -57,16 +57,15 @@
             </style>
         @using (Html.BeginForm("ClientProfile", "Client", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
-
             <div class="row contact_left_grid">
                 <div class="col-md-6 con-left">
                     <br>
                     @Html.Label("Profil Fotoğrafı")
-                    <br />
+                    <br/>
                     <div class="profile-picture">
                         @if (!string.IsNullOrEmpty(Model.ClientImage))
                         {
-                            <img src="~/resim/@Model.ClientImage" alt="Profil Fotoğrafı" class="img-fluid" />
+                            <img src="~/resim/@Model.ClientImage" alt="Profil Fotoğrafı" class="img-fluid"/>
                         }
                     </div>
 
@@ -77,41 +76,41 @@
                     @Html.Label("İsim")
                     @Html.TextBoxFor(x => x.ClientName, new { @class = "form-control" })
                     @Html.ValidationMessageFor(x => x.ClientName, "", new { @class = "validation-message" })
-                    <br />
+                    <br/>
                     @Html.Label("Soy İsim")
                     @Html.TextBoxFor(x => x.ClientSurName, new { @class = "form-control" })
                     @Html.ValidationMessageFor(x => x.ClientSurName, "", new { @class = "validation-message" })
-                    <br />
+                    <br/>
                     @Html.Label("Email")
                     @Html.TextBoxFor(x => x.ClientEmail, new { @class = "form-control" })
                     @Html.ValidationMessageFor(x => x.ClientEmail, "", new { @class = "validation-message", type = "email" })
-                    <br />
+                    <br/>
                     @Html.Label("Telefon Numarası")
-                    <br />
+                    <br/>
                     @Html.EditorFor(x => x.PhoneNumber, new { @class = "form-control", type = "tel" })
                     @Html.ValidationMessageFor(x => x.PhoneNumber, "", new { @class = "validation-message" })
-                    <br />
+                    <br/>
                     @Html.Label("Boy")
-                    <br />
+                    <br/>
                     @Html.EditorFor(x => x.ClientHeight, new { @class = "form-control", type = "number" })
                     @Html.ValidationMessageFor(x => x.ClientHeight, "", new { @class = "validation-message" })
-                    <br />
+                    <br/>
                     @Html.Label("Kilo")
-                    <br />
+                    <br/>
                     @Html.EditorFor(x => x.ClientWeight, new { @class = "form-control" })
                     @Html.ValidationMessageFor(x => x.ClientWeight, "", new { @class = "validation-message", type = "number" })
-                    <br />
-                    <br />
+                    <br/>
+                    <br/>
                     @Html.Label("Şifre")
                     @Html.TextBoxFor(x => x.ClientPassword, new { @class = "form-control" })
                     @Html.ValidationMessageFor(x => x.ClientPassword, "", new { @class = "validation-message" })
-                    <br />
+                    <br/>
                     @Html.Label("Doğum Tarihi")
                     @Html.EditorFor(x => x.ClientBirthDate, new { @class = "form-control", type = "date" })
                     @Html.ValidationMessageFor(x => x.ClientBirthDate)
-                    <br />
-                    <br />
-                    <br />
+                    <br/>
+                    <br/>
+                    <br/>
                     @Html.HiddenFor(x => x.DietitianStatus)
                     @Html.HiddenFor(x => x.ClientID)
                     @Html.HiddenFor(x => x.CreateDate)
@@ -119,8 +118,8 @@
 
 
                     <button class="btn btn-primary">Değişiklikleri Kaydet</button>
-                    <br />
-                    <br />
+                    <br/>
+                    <br/>
                 </div>
             </div>
         }

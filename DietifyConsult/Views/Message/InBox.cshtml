@@ -1,7 +1,5 @@
-﻿@using Entities.Concrete
-@using X.PagedList;
-@using X.PagedList.Mvc.Core;
-@model IPagedList<Message>
+﻿@using X.PagedList.Mvc.Core
+@model X.PagedList.IPagedList<Entities.Concrete.Message>
 @{
     ViewData["Title"] = "InBox";
     Layout = "~/Views/Shared/_ConsultantLayout.cshtml";
@@ -132,25 +130,25 @@
 </head>
 <body>
 
-    <div class="inbox-container">
-        @foreach (var item in Model)
-        {
-            <div class="message">
-                <img src="~/resim/@item.SenderUser.ClientImage" alt="Sender Avatar" class="sender-avatar">
-                <div class="message-details">
-                    <h2>@item.Subject</h2>
-                    <p>Gönderen: @item.SenderUser.ClientName @item.SenderUser.ClientSurName</p>
-                    <p>Gönderilme Tarihi: @item.MessageDate.ToString("dd/MM/yyyy HH:mm")</p>
-                </div>
-                <a href="/Message/MessageDetails/@item.MessageID" class="read-button">Mesajı Oku</a>
+<div class="inbox-container">
+    @foreach (var item in Model)
+    {
+        <div class="message">
+            <img src="~/resim/@item.SenderUser.ClientImage" alt="Sender Avatar" class="sender-avatar">
+            <div class="message-details">
+                <h2>@item.Subject</h2>
+                <p>Gönderen: @item.SenderUser.ClientName @item.SenderUser.ClientSurName</p>
+                <p>Gönderilme Tarihi: @item.MessageDate.ToString("dd/MM/yyyy HH:mm")</p>
             </div>
-        }
-    </div>
-    <!-- Pagination -->
-    <div class="pagination">
-        @Html.PagedListPager(Model, page => Url.Action("InBox", new { page }), new PagedListRenderOptions { LiElementClasses = new[] { "page-item" }, PageClasses = new[] { "pagination-button" }, LinkToPreviousPageFormat = "<", LinkToNextPageFormat = ">" })
-    </div>
-    <a href="/Message/NewMessage" class="send-message-button">Yeni Mesaj Oluştur</a>
+            <a href="/Message/MessageDetails/@item.MessageID" class="read-button">Mesajı Oku</a>
+        </div>
+    }
+</div>
+<!-- Pagination -->
+<div class="pagination">
+    @Html.PagedListPager(Model, page => Url.Action("InBox", new { page }), new PagedListRenderOptions { LiElementClasses = new[] { "page-item" }, PageClasses = new[] { "pagination-button" }, LinkToPreviousPageFormat = "<", LinkToNextPageFormat = ">" })
+</div>
+<a href="/Message/NewMessage" class="send-message-button">Yeni Mesaj Oluştur</a>
 
 </body>
 </html>

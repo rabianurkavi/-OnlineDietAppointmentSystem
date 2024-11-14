@@ -1,54 +1,50 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Business.Concrete
+namespace Business.Concrete;
+
+public class CommentManager : ICommentService
 {
-    public class CommentManager:ICommentService
+    private readonly ICommentDal _commentDal;
+
+    public CommentManager(ICommentDal commentDal)
     {
-        ICommentDal _commentDal;
-        public CommentManager(ICommentDal commentDal)
-        {
-            _commentDal = commentDal;
-        }
-        public List<Comment> GetAll()
-        {
-            return _commentDal.GetAll();
-        }
+        _commentDal = commentDal;
+    }
 
-        public Comment GetById(int id)
-        {
-            return _commentDal.Get(x => x.CommentID == id);
-        }
+    public List<Comment> GetAll()
+    {
+        return _commentDal.GetAll();
+    }
 
-		public List<Comment> GetList(int id)
-		{
-			return _commentDal.GetListWithClient(id);
-		}
+    public Comment GetById(int id)
+    {
+        return _commentDal.Get(x => x.CommentID == id);
+    }
 
-        public List<Comment> ListWİthConsultantandClient()
-        {
-            return _commentDal.ListWİthConsultantandClient();
-        }
+    public List<Comment> GetList(int id)
+    {
+        return _commentDal.GetListWithClient(id);
+    }
 
-        public void TAdd(Comment t)
-        {
-            _commentDal.Insert(t);
-        }
+    public List<Comment> ListWİthConsultantandClient()
+    {
+        return _commentDal.ListWİthConsultantandClient();
+    }
 
-        public void TDelete(Comment t)
-        {
-            _commentDal.Delete(t);
-        }
+    public void TAdd(Comment t)
+    {
+        _commentDal.Insert(t);
+    }
 
-        public void TUpdate(Comment t)
-        {
-            _commentDal.Update(t);
-        }
+    public void TDelete(Comment t)
+    {
+        _commentDal.Delete(t);
+    }
+
+    public void TUpdate(Comment t)
+    {
+        _commentDal.Update(t);
     }
 }

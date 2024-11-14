@@ -1,18 +1,10 @@
 ﻿using Business.Abstract.Generic;
 using Entities.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Business.Abstract
+namespace Business.Abstract;
+
+public interface ICommentService : IGenericService<Comment>
 {
-    public interface ICommentService : IGenericService<Comment>
-    {
-		List<Comment> GetList(int id);
-        List<Comment> ListWİthConsultantandClient();
-
-
-    }
+    List<Comment> GetList(int id);
+    List<Comment> ListWİthConsultantandClient();
 }

@@ -105,28 +105,27 @@
     </style>
 </head>
 <body>
-    <div class="message-container">
-        <div class="message-send-form">
-            <h2>Mesaj Gönder</h2>
-            <form action="/BlogMessage/SendMessage" method="post">
-                <input type="hidden" name="recipientId" value="">
-                <div>
-                    <label for="messageSubject">Alıcı: @ViewBag.Mail</label>
-                    <input type="hidden" id="messageSubject" name="ReceiverID" value="@ViewBag.SenderId">
-                </div>
-                <div>
-                    <label for="messageSubject">Konu:</label>
-                    <input type="text" id="messageSubject" name="Subject">
-                </div>
-                <div>
-                    <label for="messageContent">Mesajınız:</label>
-                    <textarea id="messageContent" name="MessageDetails" rows="4"></textarea>
-                </div>
-                <button type="submit">Gönder</button>
-            </form>
-            <a href="javascript:history.back()" class="back-button"><i class="fas fa-arrow-left"></i> Geri</a>
-        </div>
+<div class="message-container">
+    <div class="message-send-form">
+        <h2>Mesaj Gönder</h2>
+        <form action="/BlogMessage/SendMessage" method="post">
+            <input type="hidden" name="recipientId" value="">
+            <div>
+                <label for="messageSubject">Alıcı: @ViewBag.Mail</label>
+                <input type="hidden" id="messageSubject" name="ReceiverID" value="@ViewBag.SenderId">
+            </div>
+            <div>
+                <label for="messageSubject">Konu:</label>
+                <input type="text" id="messageSubject" name="Subject">
+            </div>
+            <div>
+                <label for="messageContent">Mesajınız:</label>
+                <textarea id="messageContent" name="MessageDetails" rows="4"></textarea>
+            </div>
+            <button type="submit">Gönder</button>
+        </form>
+        <a href="javascript:history.back()" class="back-button"><i class="fas fa-arrow-left"></i> Geri</a>
     </div>
+</div>
 </body>
 </html>
-

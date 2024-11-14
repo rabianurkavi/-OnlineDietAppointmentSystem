@@ -1,5 +1,4 @@
-﻿@using Entities.Concrete
-@model List<Notification>
+﻿@model List<Entities.Concrete.Notification>
 @{
     ViewData["Title"] = "Bildirimler";
     Layout = "~/Views/Shared/_ConsultantLayout.cshtml";
@@ -9,18 +8,18 @@
     <!-- Tablo için kaydırmalı alan -->
     <table class="table table-hover table-bordered">
         <thead style="background-color: #8b6fc7; color: white;">
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Duyuru</th>
-                <th scope="col">Duyuru İçeriği</th>
-                <th scope="col">Tarih</th>
-            </tr>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Duyuru</th>
+            <th scope="col">Duyuru İçeriği</th>
+            <th scope="col">Tarih</th>
+        </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+        @foreach (var item in Model)
+        {
+            @if (item.NotificationStatus)
             {
-                @if(item.NotificationStatus==true)
-                {
                 <tr class="table-light">
                     <td>@item.NotificationID</td>
                     <td>
@@ -32,8 +31,8 @@
                     </td>
                     <td>@item.NotificationDate.ToShortDateString()</td>
                 </tr>
-                }
             }
+        }
         </tbody>
     </table>
 </div>

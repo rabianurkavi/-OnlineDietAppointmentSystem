@@ -28,10 +28,22 @@
   <ItemGroup>
     <ProjectReference Include="..\Business\Business.csproj" />
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
+    <ProjectReference Include="..\Meeting\Meeting.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="wwwroot\star\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\IntegrationAppointment\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\IntegrationAppointment\PartialDetails.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

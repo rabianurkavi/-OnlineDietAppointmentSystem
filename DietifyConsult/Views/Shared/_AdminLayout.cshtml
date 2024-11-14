@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
@@ -23,71 +22,73 @@
 
 <body>
 
-    <div id="wrapper">
+<div id="wrapper">
 
-        @await Html.PartialAsync("~/Views/Admin/AdminNavbarPartial.cshtml")
+    @await Html.PartialAsync("~/Views/Admin/AdminNavbarPartial.cshtml")
 
-        <div id="page-wrapper" class="gray-bg">
-            <div class="row border-bottom">
-                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
-                    <div class="navbar-header">
-                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-                        @*<form role="search" class="navbar-form-custom" action="search_results.html">
+    <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                    @*<form role="search" class="navbar-form-custom" action="search_results.html">
                         <div class="form-group">
                         <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
                         </div>
                         </form>*@
-                    </div>
-                    <ul class="nav navbar-top-links navbar-right">
-                        <li>
-                            <span class="m-r-sm text-muted welcome-message">Admin Sayfasına Hoş geldin...</span>
-                        </li>
-                        <li>
-                            <a href="/Login/LogOut">
-                                <i class="fa fa-sign-out"></i> Çıkış Yap
-                            </a>
-                        </li>
-                    </ul>
-
-                </nav>
-            </div>
-            <div class="wrapper wrapper-content animated fadeInRight">
-                @RenderBody()
-            </div>
-            <div class="footer">
-                <div class="float-right">
-                    10GB of <strong>250GB</strong> Free.
                 </div>
-                <div>
-                    <strong>Rabia Nur Kavi</strong> Bitirme Ödevi-2024
-                </div>
-            </div>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li>
+                        <span class="m-r-sm text-muted welcome-message">Admin Sayfasına Hoş geldin...</span>
+                    </li>
+                    <li>
+                        <a href="/Login/LogOut">
+                            <i class="fa fa-sign-out"></i> Çıkış Yap
+                        </a>
+                    </li>
+                </ul>
 
+            </nav>
         </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+            @RenderBody()
+        </div>
+        <div class="footer">
+            <div class="float-right">
+                10GB of <strong>250GB</strong> Free.
+            </div>
+            <div>
+                <strong>Rabia Nur Kavi</strong> Bitirme Ödevi-2024
+            </div>
+        </div>
+
     </div>
+</div>
 
 
-    <!-- Mainly scripts -->
-    <script src="~/admin/js/jquery-3.1.1.min.js"></script>
-    <script src="~/admin/js/popper.min.js"></script>
-    <script src="~/admin/js/bootstrap.js"></script>
-    <script src="~/admin/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="~/admin/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<!-- Mainly scripts -->
+<script src="~/admin/js/jquery-3.1.1.min.js"></script>
+<script src="~/admin/js/popper.min.js"></script>
+<script src="~/admin/js/bootstrap.js"></script>
+<script src="~/admin/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="~/admin/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-    <!-- Peity -->
-    <script src="~/admin/js/plugins/peity/jquery.peity.min.js"></script>
+<!-- Peity -->
+<script src="~/admin/js/plugins/peity/jquery.peity.min.js"></script>
 
-    <!-- Custom and plugin javascript -->
-    <script src="~/admin/js/inspinia.js"></script>
-    <script src="~/admin/js/plugins/pace/pace.min.js"></script>
+<!-- Custom and plugin javascript -->
+<script src="~/admin/js/inspinia.js"></script>
+<script src="~/admin/js/plugins/pace/pace.min.js"></script>
 
-    <!-- iCheck -->
-    <script src="js/plugins/iCheck/icheck.min.js"></script>
+<!-- iCheck -->
+<script src="js/plugins/iCheck/icheck.min.js"></script>
 
-    <!-- Peity -->
-    <script src="~/admin/js/demo/peity-demo.js"></script>
+<!-- Peity -->
+<script src="~/admin/js/demo/peity-demo.js"></script>
 
-    <script>
+<script>
         $(document).ready(function(){
             $('.i-checks').iCheck({
                 checkboxClass: 'icheckbox_square-green',
@@ -95,10 +96,9 @@
             });
         });
     </script>
-    @await RenderSectionAsync("scripts")
+@await RenderSectionAsync("scripts")
 
 
 </body>
 
 </html>
-

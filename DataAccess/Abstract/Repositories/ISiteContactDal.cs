@@ -1,14 +1,8 @@
 ﻿using Entities.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DataAccess.Abstract.Repositories
+namespace DataAccess.Abstract.Repositories;
+
+public interface ISiteContactDal : IGenericDal<SiteContact>
 {
-    public interface ISiteContactDal:IGenericDal<SiteContact>
-    {
-        SiteContact GetRecentSiteContact();
-    }
+    SiteContact GetRecentSiteContact();
 }
