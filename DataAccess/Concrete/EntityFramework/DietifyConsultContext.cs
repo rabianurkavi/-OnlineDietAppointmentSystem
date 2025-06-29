@@ -24,7 +24,7 @@ public class DietifyConsultContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("server=RABIA\\SQLEXPRESS;Database=DietifyConsultDB;Trusted_Connection=True;");
+        optionsBuilder.UseSqlServer("dbcontext ismi");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
